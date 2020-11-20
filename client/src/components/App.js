@@ -5,8 +5,8 @@ import history from "../history";
 import { Router, Route } from "react-router-dom";
 import Dummy from "./Dummy";
 class App extends React.Component {
-  showData = async () => {
-    const response = await axios.get("/showData");
+  showDetails = async () => {
+    const response = await axios.get("/details");
     //  const body = await response.json();
     if (response.status !== 200) {
       console.log("some error");
@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <div>
         page one
-        <button onClick={this.showData}>Click here to display</button>
+        <button onClick={this.showDetails}>Click here to display</button>
         <Router history={history}>
           <div>
             <Route exact path="/custsignin" component={CustomerSignIn} />
