@@ -38,7 +38,12 @@ app.get("/first", (req, res) => {
 app.post("/showData", async (req, res) => {
   const { id, password, account } = req.body; //degenerate
   console.log(password);
-
+  // var sql =
+  //   "SELECT * FROM `customer` WHERE `customerId`='" +
+  //   id +
+  //   "' and cpassword = '" +
+  //   password +
+  //   "'";
   var sql =
     "SELECT * FROM customer WHERE customerId = ? AND cpassword = ? AND CaccountNo = ?";
   mysqlConnection.query(
@@ -64,20 +69,19 @@ app.post("/showData", async (req, res) => {
   );
 });
 
-app.get("/details", (req, res) => {
-  mysqlConnection.query("select * from customer", function (
-    err,
-    result,
-    fields
-  ) {
-    if (err) {
-      console.log("errorororor");
-    } else {
-      
-      res.send(result);
-    }
-  });
-});
+// app.get("/showData", (req, res) => {
+//   mysqlConnection.query("select * from customer", function (
+//     err,
+//     result,
+//     fields
+//   ) {
+//     if (err) {
+//       console.log("errorororor");
+//     } else {
+//       res.send(result);
+//     }
+//   });
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
