@@ -64,6 +64,36 @@ app.post("/showData", async (req, res) => {
   );
 });
 
+app.post("/employeesignin",async (req,res) =>{
+  const { id, password } = req.body; //degenerate
+  console.log(password);
+
+  var sql =
+    "SELECT * FROM emp WHERE emp_id = ? AND password = ?";
+  mysqlConnection.query(
+    sql,
+    [id, password],
+
+    function (err, result, fields) {
+      console.log(result);
+      if (err) {
+        console.log("error has ocuured");
+      }
+
+      if (result.length) {
+        res.json({
+          auth: true,
+        });
+      } else {
+        res.json({
+          auth: false,
+        });
+      }
+    }
+  );
+});
+
+
 app.get("/edu/loans", (req, res) => {
   var sql =
     "SELECT e.loan_id,e.course,e.percentage,l.loan_name,l.i_rate,l.year,l.p_rate from education e,loans l where e.loan_id=l.loan_id";

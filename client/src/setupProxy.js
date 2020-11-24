@@ -4,6 +4,10 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/showData", { target: "http://localhost:5000" })
   );
+  app.use(
+    createProxyMiddleware("/employeesignin", { target: "http://localhost:5000" })
+  );
+
 
   app.use(
     createProxyMiddleware("/edu/**", { target: "http://localhost:5000" })
