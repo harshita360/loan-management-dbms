@@ -38,12 +38,7 @@ app.get("/first", (req, res) => {
 app.post("/showData", async (req, res) => {
   const { id, password, account } = req.body; //degenerate
   console.log(password);
-  // var sql =
-  //   "SELECT * FROM `customer` WHERE `customerId`='" +
-  //   id +
-  //   "' and cpassword = '" +
-  //   password +
-  //   "'";
+
   var sql =
     "SELECT * FROM customer WHERE customerId = ? AND cpassword = ? AND CaccountNo = ?";
   mysqlConnection.query(
@@ -69,19 +64,57 @@ app.post("/showData", async (req, res) => {
   );
 });
 
-// app.get("/showData", (req, res) => {
-//   mysqlConnection.query("select * from customer", function (
-//     err,
-//     result,
-//     fields
-//   ) {
-//     if (err) {
-//       console.log("errorororor");
-//     } else {
-//       res.send(result);
-//     }
-//   });
-// });
+app.get("/edu/loans", (req, res) => {
+  var sql =
+    "SELECT e.loan_id,e.course,e.percentage,l.loan_name,l.i_rate,l.year,l.p_rate from education e,loans l where e.loan_id=l.loan_id";
+  mysqlConnection.query(sql, function (err, result, fields) {
+    if (err) {
+      console.log("errorororor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/business/loans", (req, res) => {
+  var sql =
+    "SELECT l.loan_id,l.i_rate,l.p_rate,l.loan_name,l.year,b.type FROM loans l,business b where b.loan_id=l.loan_id";
+
+  mysqlConnection.query(sql, function (err, result, fields) {
+    if (err) {
+      console.log("errorororor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/loanform/edu", (req, res) => {
+  var sql =
+    "INSERT INTO loanform (firstname, middlename, lastname, loan_name) VALUES ('harsh', 's', 'singh', 'Scholar MOOC loan')";
+  mysqlConnection.query(sql, function (err, result) {
+    if (err) {
+      console.log("errorororor");
+    } else {
+      console.log("inserted succesfully");
+      console.log("Last insert ID:", result.insertId);
+      var id = result.insertId;
+      console.log(id);
+
+      var c =
+        "INSERT INTO eduloanform (form_id,college,percentage) VALUES (" +
+        id +
+        ", 'Bangalore Institute of Tech','90%')";
+      mysqlConnection.query(c, function (err, result) {
+        if (err) {
+          console.log("error in seconf insertion");
+        } else {
+          console.log("sucesss!!");
+        }
+      });
+    }
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

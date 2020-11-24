@@ -4,4 +4,11 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/showData", { target: "http://localhost:5000" })
   );
+
+  app.use(
+    createProxyMiddleware("/edu/**", { target: "http://localhost:5000" })
+  );
+  app.use(
+    createProxyMiddleware("/business/**", { target: "http://localhost:5000" })
+  );
 };
