@@ -8,7 +8,7 @@ class CustomerSignIn extends React.Component {
     console.log("function called");
 
     axios
-      .post("showData", {
+      .post("/customersignin", {
         id: this.state.customerId,
         password: this.state.password,
         account: this.state.account,

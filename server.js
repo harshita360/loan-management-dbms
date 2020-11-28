@@ -35,7 +35,7 @@ app.get("/first", (req, res) => {
   );
 });
 
-app.post("/showData", async (req, res) => {
+app.post("/customersignin", async (req, res) => {
   const { id, password, account } = req.body; //degenerate
   console.log(password);
 
@@ -64,12 +64,11 @@ app.post("/showData", async (req, res) => {
   );
 });
 
-app.post("/employeesignin",async (req,res) =>{
+app.post("/employeesignin", async (req, res) => {
   const { id, password } = req.body; //degenerate
   console.log(password);
 
-  var sql =
-    "SELECT * FROM emp WHERE emp_id = ? AND password = ?";
+  var sql = "SELECT * FROM emp WHERE emp_id = ? AND password = ?";
   mysqlConnection.query(
     sql,
     [id, password],
@@ -92,7 +91,6 @@ app.post("/employeesignin",async (req,res) =>{
     }
   );
 });
-
 
 app.get("/edu/loans", (req, res) => {
   var sql =
@@ -120,26 +118,44 @@ app.get("/business/loans", (req, res) => {
 });
 
 app.post("/loanform/edu", (req, res) => {
-  var sql =
-    "INSERT INTO loanform (firstname, middlename, lastname, loan_name) VALUES ('harsh', 's', 'singh', 'Scholar MOOC loan')";
-  mysqlConnection.query(sql, function (err, result) {
+  const { custid, clg, course, per, amt, gname, grelation, loanid } = req.body;
+  // var sql =
+  //   "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (80134, 'e1111', 100000,1)";
+  var sql2 = "INSERT INTO gurantor(g_name,g_relation) VALUES(?,?)";
+  mysqlConnection.query(sql2, [gname, grelation], function (err, result) {
     if (err) {
-      console.log("errorororor");
+      console.log(err);
     } else {
-      console.log("inserted succesfully");
-      console.log("Last insert ID:", result.insertId);
-      var id = result.insertId;
-      console.log(id);
-
-      var c =
-        "INSERT INTO eduloanform (form_id,college,percentage) VALUES (" +
-        id +
-        ", 'Bangalore Institute of Tech','90%')";
-      mysqlConnection.query(c, function (err, result) {
+      var gp = result.insertId;
+      var sql =
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
+      mysqlConnection.query(sql, [custid, loanid, amt, gp], function (
+        err,
+        result2
+      ) {
         if (err) {
-          console.log("error in seconf insertion");
+          console.log(err);
         } else {
-          console.log("sucesss!!");
+          console.log("inserted succesfully");
+          console.log("Last insert ID:", result2.insertId);
+          var id = result2.insertId;
+          console.log(id);
+
+          var c =
+            "INSERT INTO eduloanform (form_id,college,percentage) VALUES (?,?,?)";
+          mysqlConnection.query(c, [id, clg, per], function (err, result3) {
+            if (err) {
+              console.log("error in seconf insertion");
+              res.json({
+                submit: false,
+              });
+            } else {
+              console.log("sucesss!!");
+              res.json({
+                submit: true,
+              });
+            }
+          });
         }
       });
     }
