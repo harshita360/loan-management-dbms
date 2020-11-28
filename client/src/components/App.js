@@ -7,6 +7,9 @@ import { Router, Route } from "react-router-dom";
 import Dummy from "./Dummy";
 import LoanFormEdu from "./LoanFormEdu";
 import EmployeeSignIn from "./EmployeeSignIn";
+import LoanFormbusi from "./LoanFormbusi";
+import LoanFormMor from "./LoanFormMor";
+
 class App extends React.Component {
   showData = async () => {
     const response = await axios.get("/showData");
@@ -28,6 +31,8 @@ class App extends React.Component {
             <Route exact path="/dummy" component={Dummy} />
             <Route exact path="/viewloans" component={LoansList} />
             <Route exact path="/educationform" component={LoanFormEdu} />
+            <Route exact path="/businessform"  component={LoanFormbusi} />
+            <Route exact path="/mortgageform"  component={LoanFormMor} />
           </div>
         </Router>
       </div>

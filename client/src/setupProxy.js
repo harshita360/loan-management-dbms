@@ -11,6 +11,12 @@ module.exports = function (app) {
       target: "http://localhost:5000",
     })
   );
+  app.use(
+    createProxyMiddleware("/busiloanform", { target: "http://localhost:5000" })
+  );
+  app.use(
+    createProxyMiddleware("/morloanform", { target: "http://localhost:5000" })
+  );
 
   app.use(
     createProxyMiddleware("/edu/**", { target: "http://localhost:5000" })
