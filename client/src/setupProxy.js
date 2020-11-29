@@ -27,4 +27,10 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/loanform/edu", { target: "http://localhost:5000" })
   );
+  app.use(
+    createProxyMiddleware("/emp/getloans", { target: "http://localhost:5000" })
+  );
+  app.use(
+    createProxyMiddleware("/updatestatus", { target: "http://localhost:5000" })
+  );
 };

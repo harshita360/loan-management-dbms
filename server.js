@@ -92,99 +92,115 @@ app.post("/employeesignin", async (req, res) => {
   );
 });
 
-app.post("/busiloanform",(req,res)=>{
-  const {gname, grelation, type, investment, custid, loanid, amt} = req.body;
+app.post("/busiloanform", (req, res) => {
+  const { gname, grelation, type, investment, custid, loanid, amt } = req.body;
 
-  var sql=
-     "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
-  mysqlConnection.query(
-    sql,
-    [gname,grelation],function(err,result,fields){
-      if(err){
-        console.log(err);
-      }else{
-        console.log("successfully inserted");
-        var gid = result.insertId;
-        var sql1 =
-          "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
-        mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
-          err,
-          result1
-        ) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("inserted succesfully");
-            console.log("Last insert ID:", result1.insertId);
-            var id = result1.insertId;
-            console.log(id);
+  var sql = "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
+  mysqlConnection.query(sql, [gname, grelation], function (
+    err,
+    result,
+    fields
+  ) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("successfully inserted");
+      var gid = result.insertId;
+      var sql1 =
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
+      mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
+        err,
+        result1
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("inserted succesfully");
+          console.log("Last insert ID:", result1.insertId);
+          var id = result1.insertId;
+          console.log(id);
 
-            var sql2 =
-              "INSERT INTO businessloanform (form_id,type_of_business,investment_amt) VALUES (?,?,?)";
-            mysqlConnection.query(sql2, [id, type, investment], function (err, result2) {
-              if (err) {
-                console.log("error in second insertion");
-                res.json({
-                  submit: false,
-                });
-              } else {
-                console.log("sucesss!!");
-                res.json({
-                  submit: true,
-                });
-              }
-            });
-          }
-        });
-      }
-    });
+          var sql2 =
+            "INSERT INTO businessloanform (form_id,type_of_business,investment_amt) VALUES (?,?,?)";
+          mysqlConnection.query(sql2, [id, type, investment], function (
+            err,
+            result2
+          ) {
+            if (err) {
+              console.log("error in second insertion");
+              res.json({
+                submit: false,
+              });
+            } else {
+              console.log("sucesss!!");
+              res.json({
+                submit: true,
+              });
+            }
+          });
+        }
+      });
+    }
+  });
 });
-app.post("/morloanform",(req,res)=>{
-  const {gname, grelation, location, empstatus, custid, loanid, amt} = req.body;
+app.post("/morloanform", (req, res) => {
+  const {
+    gname,
+    grelation,
+    location,
+    empstatus,
+    custid,
+    loanid,
+    amt,
+  } = req.body;
 
-  var sql=
-     "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
-  mysqlConnection.query(
-    sql,
-    [gname,grelation],function(err,result,fields){
-      if(err){
-        console.log(err);
-      }else{
-        console.log("successfully inserted");
-        var gid = result.insertId;
-        var sql1 =
-          "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
-        mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
-          err,
-          result1
-        ) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("inserted succesfully");
-            console.log("Last insert ID:", result1.insertId);
-            var id = result1.insertId;
-            console.log(id);
+  var sql = "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
+  mysqlConnection.query(sql, [gname, grelation], function (
+    err,
+    result,
+    fields
+  ) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("successfully inserted");
+      var gid = result.insertId;
+      var sql1 =
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
+      mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
+        err,
+        result1
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("inserted succesfully");
+          console.log("Last insert ID:", result1.insertId);
+          var id = result1.insertId;
+          console.log(id);
 
-            var sql2 =
-              "INSERT INTO mortgageloanform (form_id,location,emp_status) VALUES (?,?,?)";
-            mysqlConnection.query(sql2, [id, location, empstatus], function (err, result2) {
-              if (err) {
-                console.log("error in second insertion");
-                res.json({
-                  submit: false,
-                });
-              } else {
-                console.log("sucesss!!");
-                res.json({
-                  submit: true,
-                });
-              }
-            });
-          }
-        });
-      }
-    });
+          var sql2 =
+            "INSERT INTO mortgageloanform (form_id,location,emp_status) VALUES (?,?,?)";
+          mysqlConnection.query(sql2, [id, location, empstatus], function (
+            err,
+            result2
+          ) {
+            if (err) {
+              console.log("error in second insertion");
+              res.json({
+                submit: false,
+              });
+            } else {
+              console.log("sucesss!!");
+              res.json({
+                submit: true,
+              });
+            }
+          });
+        }
+      });
+    }
+  });
 });
 
 app.get("/edu/loans", (req, res) => {
