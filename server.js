@@ -228,6 +228,58 @@ app.get("/business/loans", (req, res) => {
   });
 });
 
+app.post("/viewform", (req,res)=>{
+  const id = req.body.formid;
+  console.log(id);
+  var q=
+     "SELECT ls.loan_id FROM loanform ls WHERE ls.form_id= ?";
+     mysqlConnection.query(q,[id],function(err, result, fields){
+       if(err){
+         console.log(err);
+       }else{
+         console.log("proceeding");
+         console.log(result[0].loan_id);
+         var qe = result[0].loan_id;
+         if(qe.charAt(0)==="e"){
+           var q1=
+             "SELECT g.g_name,g.g_relation,e.college,e.percentage,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,eduloanform e,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id";
+             mysqlConnection.query(q1,[id,qe], function(err,result1,fields){
+               if(err){
+                 console.log(err);
+               }else{
+                 console.log("proceeding1");
+                 res.send(result1);
+                 console.log(result1);
+               }
+             });
+         }else if(qe.charAt(0)=="b"){
+           var q2=
+             "SELECT g.g_name,g.g_relation,b.type_of_business,b.investment_amt,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,businessloanform b,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id;";
+             mysqlConnection.query(q2,[id,qe],function(err,result2,fileds){
+               if(err){
+                 console.log(err);
+               }else{
+                 console.log("proceeding2");
+                  res.send(result2);
+               }
+             });
+         }else{
+           var q3=
+             "SELECT g.g_name,g.g_relation,m.location,m.emp_status,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,mortgageloanform m,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id";
+             mysqlConnection.query(q3,[id,qe],function(err,result3,fields){
+               if(err){
+                 console.log(err);
+               }else{
+                 console.log("proceeding3");
+                  res.send(result3);
+               }
+             })
+         }
+       }
+     });
+
+});
+
 app.post("/loanform/edu", (req, res) => {
   const { custid, clg, course, per, amt, gname, grelation, loanid } = req.body;
   // var sql =

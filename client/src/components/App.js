@@ -10,6 +10,7 @@ import EmployeeSignIn from "./EmployeeSignIn";
 import LoanFormbusi from "./LoanFormbusi";
 import LoanFormMor from "./LoanFormMor";
 import EmpChangeStatus from "./EmpChangeStatus";
+import CustViewMyForm from "./CustViewMyForm";
 
 class App extends React.Component {
   showData = async () => {
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Route exact path="/businessform" component={LoanFormbusi} />
             <Route exact path="/mortgageform" component={LoanFormMor} />
             <Route exact path="/emp/editstatus" component={EmpChangeStatus} />
+            <Route exact path="/viewapp" component={CustViewMyForm} />
           </div>
         </Router>
       </div>
