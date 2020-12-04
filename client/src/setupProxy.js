@@ -31,9 +31,23 @@ module.exports = function (app) {
     createProxyMiddleware("/loanform/edu", { target: "http://localhost:5000" })
   );
   app.use(
-    createProxyMiddleware("/emp/getloans", { target: "http://localhost:5000" })
+    createProxyMiddleware("/emp/geteducationforms", {
+      target: "http://localhost:5000",
+    })
   );
   app.use(
-    createProxyMiddleware("/updatestatus", { target: "http://localhost:5000" })
+    createProxyMiddleware("/emp/getbusinessforms", {
+      target: "http://localhost:5000",
+    })
+  );
+  app.use(
+    createProxyMiddleware("/emp/getmortgageforms", {
+      target: "http://localhost:5000",
+    })
+  );
+  app.use(
+    createProxyMiddleware("/emp/updatestatus", {
+      target: "http://localhost:5000",
+    })
   );
 };

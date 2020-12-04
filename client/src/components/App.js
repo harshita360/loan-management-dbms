@@ -11,6 +11,7 @@ import LoanFormbusi from "./LoanFormbusi";
 import LoanFormMor from "./LoanFormMor";
 import EmpChangeStatus from "./EmpChangeStatus";
 import CustViewMyForm from "./CustViewMyForm";
+import Footer from "./Footer";
 
 class App extends React.Component {
   showData = async () => {
@@ -24,8 +25,36 @@ class App extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h1>Loan </h1>
+      <div style={{ backgroundColor: "#323232", color: "white" }}>
+        <div
+          className="ui secondary  menu"
+          style={{ backgroundColor: "#990000", color: "white", height: "10vh" }}
+        >
+          <a href="/#" className="active item" style={{ color: "white" }}>
+            Home
+          </a>
+          <a href="/#" className="item" style={{ color: "white" }}>
+            Messages
+          </a>
+          <a href="/#" className="item" style={{ color: "white" }}>
+            Friends
+          </a>
+          <div className="right menu">
+            <div className="item">
+              <div className="ui icon input">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  style={{ color: "white" }}
+                />
+                <i className="search link icon"></i>
+              </div>
+            </div>
+            <a href="/#" className="ui item" style={{ color: "white" }}>
+              Logout
+            </a>
+          </div>
+        </div>
         <Router history={history}>
           <div>
             <Route exact path="/custsignin" component={CustomerSignIn} />
@@ -35,10 +64,28 @@ class App extends React.Component {
             <Route exact path="/educationform" component={LoanFormEdu} />
             <Route exact path="/businessform" component={LoanFormbusi} />
             <Route exact path="/mortgageform" component={LoanFormMor} />
-            <Route exact path="/emp/editstatus" component={EmpChangeStatus} />
+            <Route
+              exact
+              path="/emp/editstatus/:id"
+              component={EmpChangeStatus}
+            />
             <Route exact path="/viewapp" component={CustViewMyForm} />
           </div>
         </Router>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <br />
+        <br />
+
+        <Footer />
       </div>
     );
   }
