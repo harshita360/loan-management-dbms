@@ -15,6 +15,9 @@ module.exports = function (app) {
     createProxyMiddleware("/busiloanform", { target: "http://localhost:5000" })
   );
   app.use(
+    createProxyMiddleware("/viewstatus", { target: "http://localhost:5000" })
+  );
+  app.use(
     createProxyMiddleware("/viewform", { target: "http://localhost:5000" })
   );
   app.use(

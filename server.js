@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "harshita",
+  password: "joshi@1965",
   database: "loanmg",
   multipleStatements: true,
 });
@@ -277,6 +277,59 @@ app.post("/viewform", (req, res) => {
     }
   });
 });
+
+app.post("/viewstatus",(req,res)=>{
+  const fid = req.body.formid;
+  console.log(fid);
+  var s = "SELECT form_id FROM loanform where form_id=?";
+  mysqlConnection.query(s,fid,function(err,result){
+    if(err){
+      console.log(err);
+      res.json({
+        exists:"error",
+      });
+    }
+    if(!result.length){
+      console.log("Invalid formid");
+      res.json({
+       exist:"invalid",
+      });
+    }
+    else{
+      var s1 = "SELECT form_id FROM loanstatus where form_id=?";
+      mysqlConnection.query(s1,fid,function(err,result1){
+        if(err){
+          console.log(err);
+          res.json({
+            exist:"error",
+          });
+        }
+        if(!result1.length){
+          console.log("Form is not seen");
+          res.json({
+               exist:"not seen",
+          });
+        }
+        else{
+          var s2 = "SELECT form_id,status,date FROM loanstatus where form_id=? order by date";
+          mysqlConnection.query(s2,fid,function(err,result2){
+            if(err){
+              console.log(err);
+              console.log("In s2");
+              res.json({
+                exist:"error"
+              });
+            }else{
+              console.log(result2);
+
+              res.send(result2)
+            }
+          })
+        }
+      })
+    }
+  })
+})
 
 app.post("/loanform/edu", (req, res) => {
   const { custid, clg, course, per, amt, gname, grelation, loanid } = req.body;

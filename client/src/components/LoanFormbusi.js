@@ -41,8 +41,8 @@ class LoanFormbusi extends React.Component{
   render(){
     return(
     <div>
-      <h3>Employee sign in </h3>
-
+      <h3>Business loan form </h3>
+      
       <input
         placeholder="enter customer Id"
         onChange={(e) => this.setState({ custid: e.target.value })}

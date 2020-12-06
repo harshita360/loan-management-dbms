@@ -11,6 +11,7 @@ import LoanFormbusi from "./LoanFormbusi";
 import LoanFormMor from "./LoanFormMor";
 import EmpChangeStatus from "./EmpChangeStatus";
 import CustViewMyForm from "./CustViewMyForm";
+import CustomerViewStatus from"./CustomerViewStatus";
 import Footer from "./Footer";
 
 class App extends React.Component {
@@ -70,6 +71,7 @@ class App extends React.Component {
               component={EmpChangeStatus}
             />
             <Route exact path="/viewapp" component={CustViewMyForm} />
+            <Route exact path="/view" component={CustomerViewStatus} />
           </div>
         </Router>
         <br />
