@@ -11,8 +11,10 @@ import LoanFormbusi from "./LoanFormbusi";
 import LoanFormMor from "./LoanFormMor";
 import EmpChangeStatus from "./EmpChangeStatus";
 import CustViewMyForm from "./CustViewMyForm";
-import CustomerViewStatus from"./CustomerViewStatus";
+import CustomerViewStatus from "./CustomerViewStatus";
 import Footer from "./Footer";
+import HomePage from "./HomePage";
+import CustomerDashboard from "./CustomerDashboard";
 
 class App extends React.Component {
   showData = async () => {
@@ -51,16 +53,22 @@ class App extends React.Component {
                 <i className="search link icon"></i>
               </div>
             </div>
-            <a href="/#" className="ui item" style={{ color: "white" }}>
-              Logout
+            <a href="/empsignin" className="ui item" style={{ color: "white" }}>
+              Employee
             </a>
           </div>
         </div>
         <Router history={history}>
           <div>
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/customer/dashboard"
+              component={CustomerDashboard}
+            />
             <Route exact path="/custsignin" component={CustomerSignIn} />
             <Route exact path="/empsignin" component={EmployeeSignIn} />
-            <Route exact path="/dummy" component={Dummy} />
+            <Route exact path="/done" component={Dummy} />
             <Route exact path="/viewloans" component={LoansList} />
             <Route exact path="/educationform" component={LoanFormEdu} />
             <Route exact path="/businessform" component={LoanFormbusi} />

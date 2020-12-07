@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class LoansList extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class LoansList extends React.Component {
       return (
         <div
           className="item"
-          style={{ backgroundColor: "yellow" }}
+          style={{ backgroundColor: "grey" }}
           key={elem.loan_id}
         >
           <h2>{elem.loan_name}</h2>
@@ -62,7 +63,7 @@ class LoansList extends React.Component {
       return (
         <div
           className="item"
-          style={{ backgroundColor: "cyan" }}
+          style={{ backgroundColor: "grey" }}
           key={elem.loan_id}
         >
           <h2>{elem.loan_name}</h2>
@@ -86,16 +87,20 @@ class LoansList extends React.Component {
         <br />
 
         <h2>Education Loans</h2>
-        <button>
-          <h3>APPLY</h3>
-        </button>
+        <Link to="/educationform">
+          <button>
+            <h3>APPLY</h3>
+          </button>
+        </Link>
         <br />
         <br />
         <div>{this.renderEducationList()}</div>
         <h2>Business Loans</h2>
-        <button>
-          <h3>APPLY</h3>
-        </button>
+        <Link to="/businessform">
+          <button>
+            <h3>APPLY</h3>
+          </button>
+        </Link>
 
         <br />
         <br />

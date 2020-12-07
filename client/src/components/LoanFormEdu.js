@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import history from "../history";
 
 class LoanFormEdu extends React.Component {
   state = {
@@ -31,6 +32,7 @@ class LoanFormEdu extends React.Component {
         //history.push("/dashboard");
         if (res.data.submit) {
           console.log("submitted succesfully");
+          history.push("/done");
         } else {
           console.log("unsuccessfull");
         }

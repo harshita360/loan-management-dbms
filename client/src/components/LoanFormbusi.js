@@ -1,9 +1,8 @@
-import React from "react"
-import axios from "axios"
+import React from "react";
+import axios from "axios";
+import history from "../history";
 
-
-
-class LoanFormbusi extends React.Component{
+class LoanFormbusi extends React.Component {
   state = {
     custid: "",
     type: "",
@@ -13,80 +12,78 @@ class LoanFormbusi extends React.Component{
     grelation: "",
     loanid: "",
   };
- submitbusiform = ()=>{
-   console.log(this.state);
-   axios.post("busiloanform",{
-     custid:this.state.custid,
-     type:this.state.type,
-     investment:this.state.investment,
-     amt:this.state.amt,
-     gname:this.state.gname,
-     grelation:this.state.grelation,
-     loanid:this.state.loanid,
-   })
-   .then(function (res) {
-     if(res.data.submit){
+  submitbusiform = () => {
+    console.log(this.state);
+    axios
+      .post("busiloanform", {
+        custid: this.state.custid,
+        type: this.state.type,
+        investment: this.state.investment,
+        amt: this.state.amt,
+        gname: this.state.gname,
+        grelation: this.state.grelation,
+        loanid: this.state.loanid,
+      })
+      .then(function (res) {
+        if (res.data.submit) {
+          console.log("inserted msg from front end");
+          history.push("/done");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-     console.log("inserted msg from front end");
-   }
+  render() {
+    return (
+      <div>
+        <h3>Business loan form </h3>
 
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
+        <input
+          placeholder="enter customer Id"
+          onChange={(e) => this.setState({ custid: e.target.value })}
+        />
+        <br />
+        <input
+          placeholder="enter type of business"
+          onChange={(e) => this.setState({ type: e.target.value })}
+        />
+        <br />
 
- };
+        <input
+          placeholder="enter investment amount"
+          onChange={(e) => this.setState({ investment: e.target.value })}
+        />
+        <br />
 
+        <input
+          placeholder="enter amount"
+          onChange={(e) => this.setState({ amt: e.target.value })}
+        />
+        <br />
 
-  render(){
-    return(
-    <div>
-      <h3>Business loan form </h3>
-      
-      <input
-        placeholder="enter customer Id"
-        onChange={(e) => this.setState({ custid: e.target.value })}
-      />
-      <br />
-      <input
-        placeholder="enter type of business"
-        onChange={(e) => this.setState({ type: e.target.value })}
-      />
-      <br />
+        <input
+          placeholder="enter gurantor name"
+          onChange={(e) => this.setState({ gname: e.target.value })}
+        />
+        <br />
 
-      <input
-        placeholder="enter investment amount"
-        onChange={(e) => this.setState({ investment: e.target.value })}
-      />
-      <br />
+        <input
+          placeholder="enter gurantor relation"
+          onChange={(e) => this.setState({ grelation: e.target.value })}
+        />
+        <br />
 
-      <input
-        placeholder="enter amount"
-        onChange={(e) => this.setState({ amt: e.target.value })}
-      />
-      <br />
-
-      <input
-        placeholder="enter gurantor name"
-        onChange={(e) => this.setState({ gname: e.target.value })}
-      />
-      <br />
-
-      <input
-        placeholder="enter gurantor relation"
-        onChange={(e) => this.setState({ grelation: e.target.value })}
-      />
-      <br />
-
-      <input
-        placeholder="enter loanid"
-        onChange={(e) => this.setState({ loanid: e.target.value })}
-      />
-      <br />
-      <br />
-      <br />
-      <button onClick={this.submitbusiform}>SUBMIT</button>
-    </div>
+        <input
+          placeholder="enter loanid"
+          onChange={(e) => this.setState({ loanid: e.target.value })}
+        />
+        <br />
+        <br />
+        <br />
+        <button onClick={this.submitbusiform}>SUBMIT</button>
+      </div>
     );
   }
 }
