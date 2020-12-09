@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./EmpChangeStatus.css";
 
 class EmpChangeStatus extends React.Component {
   constructor(props) {
@@ -73,40 +74,110 @@ class EmpChangeStatus extends React.Component {
     return this.state.eduformlist.map((elem) => {
       console.log(elem);
       return (
-        <div className="item" key={elem.form_id}>
-          <h3>{elem.fname}</h3>
+        <div
+          className="card"
+          key={elem.form_id}
+          style={{
+            margin: "15px",
+            backgroundColor: "#e2e2e2",
+            padding: "10px",
+          }}
+        >
+          <div className="content">
+            <a href="/#" className="ui red right ribbon label">
+              EDUCATION
+            </a>
 
-          <h3>{elem.form_id}</h3>
-
-          <h3>{elem.loan_id}</h3>
-
-          <h3>{elem.loan_name}</h3>
-
-          <h3>{elem.state}</h3>
-
-          <h3>{elem.gname}</h3>
-          <h3>{elem.college}</h3>
-          <h3>{elem.percentage}</h3>
-
+            <div className="header">
+              <h3>
+                <i className="big user outline icon"></i>
+                {elem.fname}&nbsp;&nbsp;{elem.mname}&nbsp;&nbsp;{elem.lname}
+              </h3>
+            </div>
+            <div className="meta" style={{ padding: "35px" }}>
+              <label className="ui yellow horizontal label">
+                <h5 style={{ color: "black" }}>Application Number:&nbsp;</h5>
+              </label>
+              {elem.form_id}
+            </div>
+            <div
+              className="ui relaxed divided list"
+              style={{ fontSize: "16px", paddingLeft: "40px", color: "black" }}
+            >
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Issued Loan ID:&nbsp;</h5>
+                </label>
+                {elem.loan_id}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Loan Name:&nbsp;</h5>
+                </label>
+                {elem.loan_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>State Of Residence:&nbsp;</h5>
+                </label>
+                {elem.state}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Institution Name:&nbsp;</h5>
+                </label>
+                {elem.college}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Score:&nbsp;</h5>
+                </label>
+                {elem.percentage}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Name:&nbsp;</h5>
+                </label>
+                {elem.g_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Relation:&nbsp;</h5>
+                </label>
+                {elem.g_relation}
+              </div>
+            </div>
+          </div>
           <br />
-          <button
-            onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
-          >
-            UNDER REVIEW
-          </button>
-          <br />
-          <br />
 
-          <button onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}>
-            ACCEPTED
-          </button>
-          <br />
-          <br />
-          <button onClick={() => this.updateStatus(elem.form_id, "REJECTED")}>
-            REJECTED
-          </button>
+          <div className="extra content" style={{ paddingLeft: "35px" }}>
+            <div className="ui buttons">
+              <button
+                className="ui blue basic button"
+                onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
+              >
+                UNDER REVIEW
+              </button>
+              <br />
+              <br />
 
-          <hr />
+              <button
+                className="ui green basic button"
+                onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}
+              >
+                ACCEPTED
+              </button>
+              <br />
+              <br />
+              <button
+                className="ui red basic button"
+                onClick={() => this.updateStatus(elem.form_id, "REJECTED")}
+              >
+                REJECTED
+              </button>
+            </div>
+          </div>
+          <hr style={{ backgroundColor: "#900C3F" }} />
         </div>
       );
     });
@@ -115,40 +186,110 @@ class EmpChangeStatus extends React.Component {
     return this.state.busformlist.map((elem) => {
       console.log(elem);
       return (
-        <div className="item" key={elem.form_id}>
-          <h3>{elem.fname}</h3>
+        <div
+          className="card"
+          key={elem.form_id}
+          style={{
+            margin: "15px",
+            backgroundColor: "#e2e2e2",
+            padding: "10px",
+          }}
+        >
+          <div className="content">
+            <a href="/#" className="ui teal right ribbon label">
+              BUSSINESS
+            </a>
 
-          <h3>{elem.form_id}</h3>
-
-          <h3>{elem.loan_id}</h3>
-
-          <h3>{elem.loan_name}</h3>
-
-          <h3>{elem.state}</h3>
-
-          <h3>{elem.gname}</h3>
-          <h3>{elem.type_of_business}</h3>
-          <h3>{elem.investment_amt}</h3>
-
+            <div className="header">
+              <h3>
+                <i className="big user outline icon"></i>
+                {elem.fname}&nbsp;&nbsp;{elem.mname}&nbsp;&nbsp;{elem.lname}
+              </h3>
+            </div>
+            <div className="meta" style={{ padding: "35px" }}>
+              <label className="ui yellow horizontal label">
+                <h5 style={{ color: "black" }}>Application Number:&nbsp;</h5>
+              </label>
+              {elem.form_id}
+            </div>
+            <div
+              className="ui relaxed divided list"
+              style={{ fontSize: "16px", paddingLeft: "40px", color: "black" }}
+            >
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Issued Loan ID:&nbsp;</h5>
+                </label>
+                {elem.loan_id}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Loan Name:&nbsp;</h5>
+                </label>
+                {elem.loan_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>State Of Residence:&nbsp;</h5>
+                </label>
+                {elem.state}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Type of Business:&nbsp;</h5>
+                </label>
+                {elem.type_of_business}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Investment Amount&nbsp;</h5>
+                </label>
+                {elem.investment_amt}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Name:&nbsp;</h5>
+                </label>
+                {elem.g_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Relation:&nbsp;</h5>
+                </label>
+                {elem.g_relation}
+              </div>
+            </div>
+          </div>
           <br />
-          <button
-            onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
-          >
-            UNDER REVIEW
-          </button>
-          <br />
-          <br />
 
-          <button onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}>
-            ACCEPTED
-          </button>
-          <br />
-          <br />
-          <button onClick={() => this.updateStatus(elem.form_id, "REJECTED")}>
-            REJECTED
-          </button>
+          <div className="extra content" style={{ paddingLeft: "35px" }}>
+            <div className="ui buttons">
+              <button
+                className="ui blue basic button"
+                onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
+              >
+                UNDER REVIEW
+              </button>
+              <br />
+              <br />
 
-          <hr />
+              <button
+                className="ui green basic button"
+                onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}
+              >
+                ACCEPTED
+              </button>
+              <br />
+              <br />
+              <button
+                className="ui red basic button"
+                onClick={() => this.updateStatus(elem.form_id, "REJECTED")}
+              >
+                REJECTED
+              </button>
+            </div>
+          </div>
+          <hr style={{ backgroundColor: "#900C3F" }} />
         </div>
       );
     });
@@ -158,40 +299,110 @@ class EmpChangeStatus extends React.Component {
     return this.state.mortformlist.map((elem) => {
       console.log(elem);
       return (
-        <div className="item" key={elem.form_id}>
-          <h3>{elem.fname}</h3>
+        <div
+          className="card"
+          key={elem.form_id}
+          style={{
+            margin: "15px",
+            backgroundColor: "#e2e2e2",
+            padding: "10px",
+          }}
+        >
+          <div className="content">
+            <a href="/#" className="ui brown right ribbon label">
+              MORTGAGE
+            </a>
 
-          <h3>{elem.form_id}</h3>
-
-          <h3>{elem.loan_id}</h3>
-
-          <h3>{elem.loan_name}</h3>
-
-          <h3>{elem.state}</h3>
-
-          <h3>{elem.gname}</h3>
-          <h3>{elem.location}</h3>
-          <h3>{elem.empid_status}</h3>
-
+            <div className="header">
+              <h3>
+                <i className="big user outline icon"></i>
+                {elem.fname}&nbsp;&nbsp;{elem.mname}&nbsp;&nbsp;{elem.lname}
+              </h3>
+            </div>
+            <div className="meta" style={{ padding: "35px" }}>
+              <label className="ui yellow horizontal label">
+                <h5 style={{ color: "black" }}>Application Number:&nbsp;</h5>
+              </label>
+              {elem.form_id}
+            </div>
+            <div
+              className="ui relaxed divided list"
+              style={{ fontSize: "16px", paddingLeft: "40px", color: "black" }}
+            >
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Issued Loan ID:&nbsp;</h5>
+                </label>
+                {elem.loan_id}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Loan Name:&nbsp;</h5>
+                </label>
+                {elem.loan_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>State Of Residence:&nbsp;</h5>
+                </label>
+                {elem.state}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Location of property:&nbsp;</h5>
+                </label>
+                {elem.location}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Employement Status&nbsp;</h5>
+                </label>
+                {elem.emp_status}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Name:&nbsp;</h5>
+                </label>
+                {elem.g_name}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Gurantor Relation:&nbsp;</h5>
+                </label>
+                {elem.g_relation}
+              </div>
+            </div>
+          </div>
           <br />
-          <button
-            onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
-          >
-            UNDER REVIEW
-          </button>
-          <br />
-          <br />
 
-          <button onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}>
-            ACCEPTED
-          </button>
-          <br />
-          <br />
-          <button onClick={() => this.updateStatus(elem.form_id, "REJECTED")}>
-            REJECTED
-          </button>
+          <div className="extra content" style={{ paddingLeft: "35px" }}>
+            <div className="ui buttons">
+              <button
+                className="ui blue basic button"
+                onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
+              >
+                UNDER REVIEW
+              </button>
+              <br />
+              <br />
 
-          <hr />
+              <button
+                className="ui green basic button"
+                onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}
+              >
+                ACCEPTED
+              </button>
+              <br />
+              <br />
+              <button
+                className="ui red basic button"
+                onClick={() => this.updateStatus(elem.form_id, "REJECTED")}
+              >
+                REJECTED
+              </button>
+            </div>
+          </div>
+          <hr style={{ backgroundColor: "#900C3F" }} />
         </div>
       );
     });
@@ -200,12 +411,22 @@ class EmpChangeStatus extends React.Component {
     console.log(this.props.match.params.id);
     return (
       <div>
-        <h2>List of Applications</h2>
+        <center>
+          <h2>List of Application Forms</h2>
+        </center>
         <br />
         <br />
-        <div>{this.renderEduLoanForms()}</div>
-        <div>{this.renderBusLoanForms()}</div>
-        <div>{this.renderMortLoanForms()}</div>
+        <div style={{ padding: "25px" }}>
+          <div className="ui class" style={{ color: "black" }}>
+            {this.renderEduLoanForms()}
+          </div>
+          <div className="ui class" style={{ color: "black" }}>
+            {this.renderBusLoanForms()}
+          </div>
+          <div className="ui class" style={{ color: "black" }}>
+            {this.renderMortLoanForms()}
+          </div>
+        </div>
       </div>
     );
   }
