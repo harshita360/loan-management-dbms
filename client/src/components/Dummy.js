@@ -7,6 +7,7 @@ class Dummy extends React.Component {
       <div>
         <h1>SUCCESSFUL!</h1>
         <br />
+        <hr />
         <br />
         <Link to="/customer/dashboard">
           <button>Go back to DashbOARD</button>

@@ -58,6 +58,7 @@ class App extends React.Component {
             </a>
           </div>
         </div>
+
         <Router history={history}>
           <div>
             <Route exact path="/" component={HomePage} />
