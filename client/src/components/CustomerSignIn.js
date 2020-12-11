@@ -1,6 +1,7 @@
 import React from "react";
 import history from "../history";
 import axios from "axios";
+import "./sgin.css";
 
 class CustomerSignIn extends React.Component {
   state = {
@@ -59,12 +60,18 @@ class CustomerSignIn extends React.Component {
   render() {
     const { error } = this.state;
     return (
-      <div>
-        <h3>customer sign in </h3>
+      <div className="ui centered grid">
+      <div className="three wide column">
+      <center>
+      <i class="fas fa-hand-holding-usd fa-5x"></i>
+      </center>
+        <h3>Sign In </h3>
 
         <input
           placeholder="enter customer Id"
           onChange={(e) => this.setState({ customerId: e.target.value })}
+          className="sign id"
+          type="id"
         />
         {error.custid !== "" && (
           <span style={{ color: "yellow" }}>{this.state.error.custid}</span>
@@ -73,6 +80,8 @@ class CustomerSignIn extends React.Component {
         <input
           placeholder="enter password"
           onChange={(e) => this.setState({ password: e.target.value })}
+          className="sign pass"
+          type="pass"
         />
         {error.pass !== "" && (
           <span style={{ color: "yellow" }}>{this.state.error.pass}</span>
@@ -81,6 +90,8 @@ class CustomerSignIn extends React.Component {
         <input
           placeholder="enter account number"
           onChange={(e) => this.setState({ account: e.target.value })}
+          className="sign ac"
+          type="ac"
         />
         {error.acc !== "" && (
           <span style={{ color: "yellow" }}>{this.state.error.acc}</span>
@@ -89,7 +100,13 @@ class CustomerSignIn extends React.Component {
 
         <br />
         <br />
-        <button onClick={this.handleSignIn}>Sign In</button>
+        <div className="ui large buttons">
+        <button className="ui green button"
+         onClick={this.handleSignIn}>Sign In</button>
+         <div className="or"></div>
+         <button className="ui red button">Cancel</button>
+       </div>
+      </div>
       </div>
     );
   }
