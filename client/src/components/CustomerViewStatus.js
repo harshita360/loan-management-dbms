@@ -74,10 +74,20 @@ displayError=()=>{
 render() {
   if(this.state.exist==="display"){
   return (
-    <div>
-    <label>Enter Formid</label>
+    <div className="ui centered grid">
+    <div className="six wide column">
+    <label>Enter Formid &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp;{" "}</label>
+    <div class="ui corner labeled input">
     <input onChange={(e)=>this.setState({ formid: e.target.value })} />
+    <div class="ui corner label">
+      <i class="asterisk icon"></i>
+    </div>
+   </div>
+   <br />
+   <br />
     <button onClick={this.getstatus}><h2>SUBMIT</h2></button>
+    </div>
     </div>
   )
 }
