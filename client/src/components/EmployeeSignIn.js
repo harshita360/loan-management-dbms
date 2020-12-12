@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import history from "../history";
+import "./sgin.css";
+
 
 class EmployeeSignIn extends React.Component {
   constructor(props) {
@@ -62,12 +64,18 @@ class EmployeeSignIn extends React.Component {
     const { error } = this.state;
     //console.log(this.state.employeId);
     return (
-      <div>
-        <h3>Employee sign in </h3>
+      <div className="ui centered grid">
+      <div className="three wide column">
+      <center>
+      <i class="fas fa-hand-holding-usd fa-5x"></i>
+      </center>
+        <h3>Sign In </h3>
 
         <input
           placeholder="enter employee Id"
           onChange={(e) => this.setState({ employeId: e.target.value })}
+          className="sign id"
+          type="id"
         />
         {error.empid !== "" && (
           <span style={{ color: "yellow" }}>{this.state.error.empid}</span>
@@ -76,6 +84,8 @@ class EmployeeSignIn extends React.Component {
         <input
           placeholder="enter password"
           onChange={(e) => this.setState({ password: e.target.value })}
+          className="sign pass"
+          type="pass"
         />
         {error.pass !== "" && (
           <span style={{ color: "yellow" }}>{this.state.error.pass}</span>
@@ -84,9 +94,13 @@ class EmployeeSignIn extends React.Component {
 
         <br />
         <br />
-        <button onClick={() => this.handleSignIn(this.state.employeId)}>
-          Sign In
-        </button>
+        <div className="ui large buttons">
+        <button className="ui green button"
+         onClick={this.handleSignIn}>Sign In</button>
+         <div className="or"></div>
+         <button className="ui red button">Cancel</button>
+       </div>
+      </div>
       </div>
     );
   }
