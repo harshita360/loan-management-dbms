@@ -53,4 +53,14 @@ module.exports = function (app) {
       target: "http://localhost:5000",
     })
   );
+  app.use(
+    createProxyMiddleware("/pay/details", {
+      target: "http://localhost:5000",
+    })
+  );
+  app.use(
+    createProxyMiddleware("/mortgage/loans", {
+      target: "http://localhost:5000",
+    })
+  );
 };

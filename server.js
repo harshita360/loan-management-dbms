@@ -228,6 +228,18 @@ app.get("/business/loans", (req, res) => {
   });
 });
 
+app.get("/mortgage/loans", (req, res) => {
+  var sql =
+    "SELECT l.loan_id,l.i_rate,l.p_rate,l.loan_name,l.year,m.min_salary FROM loans l,mortgage m where m.loan_id=l.loan_id";
+  mysqlConnection.query(sql, function (err, result, fields) {
+    if (err) {
+      console.log("errorororor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.post("/viewform", (req, res) => {
   const id = req.body.formid;
   console.log(id);
@@ -278,58 +290,57 @@ app.post("/viewform", (req, res) => {
   });
 });
 
-app.post("/viewstatus",(req,res)=>{
+app.post("/viewstatus", (req, res) => {
   const fid = req.body.formid;
   console.log(fid);
   var s = "SELECT form_id FROM loanform where form_id=?";
-  mysqlConnection.query(s,fid,function(err,result){
-    if(err){
+  mysqlConnection.query(s, fid, function (err, result) {
+    if (err) {
       console.log(err);
       res.json({
-        exists:"error",
+        exists: "error",
       });
     }
-    if(!result.length){
+    if (!result.length) {
       console.log("Invalid formid");
       res.json({
-       exist:"invalid",
+        exist: "invalid",
       });
-    }
-    else{
+    } else {
       var s1 = "SELECT form_id FROM loanstatus where form_id=?";
-      mysqlConnection.query(s1,fid,function(err,result1){
-        if(err){
+      mysqlConnection.query(s1, fid, function (err, result1) {
+        if (err) {
           console.log(err);
           res.json({
-            exist:"error",
+            exist: "error",
           });
         }
-        if(!result1.length){
+        if (!result1.length) {
           console.log("Form is not seen");
           res.json({
-               exist:"not seen",
+            exist: "not seen",
           });
-        }
-        else{
-          var s2 = "SELECT form_id,status,date FROM loanstatus where form_id=? order by date";
-          mysqlConnection.query(s2,fid,function(err,result2){
-            if(err){
+        } else {
+          var s2 =
+            "SELECT form_id,status,date FROM loanstatus where form_id=? order by date";
+          mysqlConnection.query(s2, fid, function (err, result2) {
+            if (err) {
               console.log(err);
               console.log("In s2");
               res.json({
-                exist:"error"
+                exist: "error",
               });
-            }else{
+            } else {
               console.log(result2);
 
-              res.send(result2)
+              res.send(result2);
             }
-          })
+          });
         }
-      })
+      });
     }
-  })
-})
+  });
+});
 
 app.post("/loanform/edu", (req, res) => {
   const { custid, clg, course, per, amt, gname, grelation, loanid } = req.body;
@@ -434,6 +445,22 @@ app.get("/emp/getmortgageforms", (req, res) => {
     } else {
       res.send(result);
       //console.log(result);
+    }
+  });
+});
+
+app.post("/pay/details", (req, res) => {
+  const { formid } = req.body;
+  console.log(req.body.formid);
+
+  var sql = "select * from payments where form_id=?";
+
+  mysqlConnection.query(sql, [formid], function (err, result, fields) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+      console.log(result);
     }
   });
 });

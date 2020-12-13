@@ -15,6 +15,7 @@ import CustomerViewStatus from "./CustomerViewStatus";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import CustomerDashboard from "./CustomerDashboard";
+import Payments from "./Payments";
 
 class App extends React.Component {
   showData = async () => {
@@ -79,6 +80,7 @@ class App extends React.Component {
               path="/emp/editstatus/:id"
               component={EmpChangeStatus}
             />
+            <Route exact path="/payments" component={Payments} />
             <Route exact path="/viewapp" component={CustViewMyForm} />
             <Route exact path="/view" component={CustomerViewStatus} />
           </div>
