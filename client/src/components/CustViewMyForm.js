@@ -147,13 +147,54 @@ class CustViewMyForm extends React.Component {
     console.log(this.state.lid);
     if (this.state.lid.charAt(0) === "t") {
       return (
-        <div>
-          <label>Enter Formid</label>
-          <input onChange={(e) => this.setState({ formid: e.target.value })} />
-          <button onClick={this.getform}>
-            <h2>SUBMIT</h2>
-          </button>
+        <div className="ui centered grid">
+          <div className="six wide column">
+            <label><h2>Enter Formid &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</h2> </label>
+            <div class="ui corner labeled input">
+              <input
+                onChange={(e) => this.setState({ formid: e.target.value })}
+                style={{
+                  width: "15vw",
+                  backgroundColor: "#323232",
+                  color: "white",
+                  border: "1px solid white",
+                  marginTop:"50px",
+                }}
+              />
+              <div class="ui corner label"
+              style={{
+                marginTop:"50px",
+              }}>
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+            <br />
+            <br />
+            <center>
+            <div className="ui large buttons">
+              <button
+                className="ui green button"
+                onClick={this.getform}
+                style={{
+                  marginTop:"50px",
+                }}
+              >
+                Submit
+              </button>
+              <div className="or"
+              style={{
+                marginTop:"50px",
+              }}></div>
+              <button className="ui red button"
+              style={{
+                marginTop:"50px",
+              }}>Cancel</button>
+            </div>
+
+            </center>
+          </div>
         </div>
+
       );
     } else if (this.state.lid.charAt(0) === "b") {
       return (

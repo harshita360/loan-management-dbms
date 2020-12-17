@@ -452,18 +452,68 @@ app.get("/emp/getmortgageforms", (req, res) => {
 app.post("/pay/details", (req, res) => {
   const { formid } = req.body;
   console.log(req.body.formid);
-
-  var sql = "select * from payments where form_id=?";
-
-  mysqlConnection.query(sql, [formid], function (err, result, fields) {
-    if (err) {
+  var q = "select form_id from loanform where form_id=?";
+  mysqlConnection.query(q, [formid], function (err, result, fields){
+    if(err){
       console.log(err);
-    } else {
-      res.send(result);
-      console.log(result);
+    }else if(result.length){
+      var q1 = "select form_id from payments where form_id=?"
+      mysqlConnection.query(q1, [formid], function (err, result1, fields){
+        if(err){
+          console.log(err);
+        }else if(result1.length){
+          var sql = "select * from payments where form_id=?";
+
+          mysqlConnection.query(sql, [formid], function (err, result2, fields) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.send(result2);
+              console.log(result2);
+            }
+        });
+    }else{
+      console.log("application not yet acceted");
+      res.json({ do: "view" });
     }
   });
+
+
+}else{
+  console.log("Invalid id");
+  res.json({ do: "invalid" });
+}
 });
+});
+
+app.post("/makepayment",(req,res) => {
+  const { formid ,amount } = req.body;
+  console.log(req.body.formid);
+  console.log(req.body.amount);
+  var q = "select final_amount,amount_paid from payments where form_id=?";
+  mysqlConnection.query(q, [formid],function(err, result1,fields){
+    if(err){
+      console.log(err);
+    } if(result1[0].final_amount-result1[0].amount_paid>=amount){
+      console.log(result1[0].final_amount);
+      console.log(result1[0].amount_paid);
+      var q1 = "update loanmg.payments set amount_paid=amount_paid+? where form_id=?;"
+
+      mysqlConnection.query(q1, [amount,formid], function(err, result2, fields){
+        if(err){
+          console.log(err);
+        } else{
+          res.json({ done: true });
+        }
+      });
+
+    } else{
+      console.log("entered amount is not in range");
+        res.json({ ok: false });
+    }
+  })
+
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

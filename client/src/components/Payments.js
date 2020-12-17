@@ -8,6 +8,7 @@ class Payments extends React.Component {
       error: { formid: "" },
       amount: 0,
       details: [],
+      do: "display"
     };
   }
   viewPayment = async () => {
@@ -18,7 +19,20 @@ class Payments extends React.Component {
         formid: this.state.form_id,
       });
       console.log(response.data);
-      this.setState({ details: response.data });
+      //this.setState({ details: response.data });
+
+     if (response.data.do === "invalid") {
+        console.log("form id is invalid");
+        this.setState({ do: response.data.do });
+      } else if (response.data.do === "view") {
+        console.log("Application is not yet accepted");
+        this.setState({ do: response.data.do });
+      } else {
+        this.setState({
+          details: response.data
+        });
+        console.log(this.state.status);
+      }
     } else {
       console.log("there is error in input");
     }
@@ -60,22 +74,23 @@ class Payments extends React.Component {
       );
     });
   };
-  // submitPayment = async () => {
-  //   const response = await axios.post("/makepayment", {
-  //     formid: this.state.form_id,
-  //     amount: this.state.amount,
-  //   });
-  //   console.log(response.data.ok);
-  //   if (res.data.ok) {
-  //     console.log("payment done");
-  //   } else {
-  //     console.log("eroor");
-  //   }
-  // };
+  submitPayment = async () => {
+    const response = await axios.post("/makepayment", {
+      formid: this.state.form_id,
+      amount: this.state.amount,
+    });
+    console.log(response.data.done);
+    if (response.data.done) {
+      console.log("payment done");
+    } else {
+      console.log("entered amount not in range");
+    }
+  };
 
   render() {
     console.log(this.state.details);
     const { error } = this.state;
+    if(this.state.do === "display"){
     return (
       <div className="ui container">
         <h2 style={{ textAlign: "center" }}>PAYMENTS</h2>
@@ -114,7 +129,7 @@ class Payments extends React.Component {
             <h5>Enter the amount to pay:&nbsp;&nbsp;</h5>
           </label>
           <br />
-          <i class="huge rupee sign icon" style={{ color: "white" }}></i>
+          <i className="huge rupee sign icon" style={{ color: "white" }}></i>
 
           <input
             className="ui large input"
@@ -128,12 +143,32 @@ class Payments extends React.Component {
             }}
           />
           <br />
-          <button className="ui green button" style={{ margin: "20px" }}>
+          <button className="ui green button"
+          onClick={this.submitPayment} style={{ margin: "20px" }}>
             DONE
           </button>
         </div>
       </div>
     );
+  }if (this.state.do === "invalid") {
+    return <div className="ui negative message">
+            <i className="close icon"></i>
+            <center>
+            <h2>
+            OOPS🤦‍
+            <br />
+            <br />
+            Form ID is invalid
+            </h2></center></div>;
+  } else if (this.state.do === "view") {
+    return <div className="ui yellow message">
+           <i className="close icon"></i>
+          <div className="header"><h3>
+           Your Application is not yet accepted!</h3>
+           </div><p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your application's status will be updated soon</p>
+           </div>
+  }
   }
 }
 
