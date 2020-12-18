@@ -11,17 +11,6 @@ const Footer = () => {
         account today
       </h2>
 
-      <div className="search-container">
-        <input
-          id="footerinput"
-          type="text"
-          placeholder="Search.."
-          name="search"
-        />
-        <a href="/#" className="button_footer">
-          Continue
-        </a>
-      </div>
       <hr />
       <br />
 
@@ -31,6 +20,25 @@ const Footer = () => {
         <li>COMPANY</li>
         <li>INDUSTRIES</li>
       </ul>
+      <br />
+      <br />
+      <center>
+        <button class="ui circular facebook icon button">
+          <i class="facebook icon" style={{ color: "white" }}></i>
+        </button>
+        &nbsp;&nbsp;
+        <button class="ui circular twitter icon button">
+          <i class="twitter icon" style={{ color: "white" }}></i>
+        </button>
+        &nbsp;&nbsp;
+        <button class="ui circular linkedin icon button">
+          <i class="linkedin icon" style={{ color: "white" }}></i>
+        </button>
+        &nbsp;&nbsp;
+        <button class="ui circular google plus icon button">
+          <i class="google plus icon" style={{ color: "white" }}></i>
+        </button>
+      </center>
     </div>
   );
 };

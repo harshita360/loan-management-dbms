@@ -154,6 +154,7 @@ class EmpChangeStatus extends React.Component {
             <div className="ui buttons">
               <button
                 className="ui blue basic button"
+                id="btn"
                 onClick={() => this.updateStatus(elem.form_id, "UNDER REVIEW")}
               >
                 UNDER REVIEW
@@ -163,6 +164,7 @@ class EmpChangeStatus extends React.Component {
 
               <button
                 className="ui green basic button"
+                id="btn"
                 onClick={() => this.updateStatus(elem.form_id, "ACCEPTED")}
               >
                 ACCEPTED
@@ -171,6 +173,7 @@ class EmpChangeStatus extends React.Component {
               <br />
               <button
                 className="ui red basic button"
+                id="btn"
                 onClick={() => this.updateStatus(elem.form_id, "REJECTED")}
               >
                 REJECTED

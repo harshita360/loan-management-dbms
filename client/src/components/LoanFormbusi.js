@@ -13,6 +13,7 @@ class LoanFormbusi extends React.Component {
       gname: "",
       grelation: "",
       loanid: "",
+      doclink: "",
       error: {
         cid: "",
         tbusi: "",
@@ -21,6 +22,7 @@ class LoanFormbusi extends React.Component {
         name: "",
         relation: "",
         lid: "",
+        dclink: "",
       },
     };
   }
@@ -34,6 +36,7 @@ class LoanFormbusi extends React.Component {
       gname,
       grelation,
       loanid,
+      doclink,
     } = this.state;
     let isValid = true;
     let error = {
@@ -44,6 +47,7 @@ class LoanFormbusi extends React.Component {
       name: "",
       relation: "",
       lid: "",
+      dclink: "",
     };
     if (!custid) {
       error.cid = "We require your ID";
@@ -71,6 +75,10 @@ class LoanFormbusi extends React.Component {
     }
     if (!loanid) {
       error.lid = "You need to enter a loan Id";
+      isValid = false;
+    }
+    if (!doclink) {
+      error.dclink = "Documents are needed for verification";
       isValid = false;
     }
     this.setState({ error: error });
@@ -306,7 +314,34 @@ class LoanFormbusi extends React.Component {
               </span>
             )}
             <br />
+
             <br />
+            <label>
+              Link to required documents &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp;&nbsp;
+            </label>
+            <div className="ui corner labeled input">
+              <input
+                type="text"
+                placeholder="your text here..."
+                onChange={(e) => this.setState({ doclink: e.target.value })}
+                style={{
+                  width: "22vw",
+                  backgroundColor: "#323232",
+                  color: "white",
+                  border: "1px solid white",
+                }}
+              />
+              <div className="ui corner label">
+                <i className="asterisk icon"></i>
+              </div>
+            </div>
+
+            {error.dclink !== "" && (
+              <span style={{ color: "#39ff14" }}>
+                {this.state.error.dclink}
+              </span>
+            )}
             <br />
             <br />
 
