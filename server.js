@@ -249,6 +249,7 @@ app.post("/viewform", (req, res) => {
       console.log(err);
     } else {
       console.log("proceeding");
+      console.log(result);
       console.log(result[0].loan_id);
       var qe = result[0].loan_id;
       if (qe.charAt(0) === "e") {
