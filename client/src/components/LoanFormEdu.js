@@ -104,6 +104,7 @@ class LoanFormEdu extends React.Component {
           gname: this.state.gname,
           grelation: this.state.grelation,
           loanid: this.state.loanid,
+          doclink: this.state.doclink,
         })
         .then(function (res) {
           console.log(res.data.submit);

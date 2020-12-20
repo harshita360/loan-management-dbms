@@ -93,65 +93,15 @@ app.post("/employeesignin", async (req, res) => {
 });
 
 app.post("/busiloanform", (req, res) => {
-  const { gname, grelation, type, investment, custid, loanid, amt } = req.body;
-
-  var sql = "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
-  mysqlConnection.query(sql, [gname, grelation], function (
-    err,
-    result,
-    fields
-  ) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("successfully inserted");
-      var gid = result.insertId;
-      var sql1 =
-        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
-      mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
-        err,
-        result1
-      ) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("inserted succesfully");
-          console.log("Last insert ID:", result1.insertId);
-          var id = result1.insertId;
-          console.log(id);
-
-          var sql2 =
-            "INSERT INTO businessloanform (form_id,type_of_business,investment_amt) VALUES (?,?,?)";
-          mysqlConnection.query(sql2, [id, type, investment], function (
-            err,
-            result2
-          ) {
-            if (err) {
-              console.log("error in second insertion");
-              res.json({
-                submit: false,
-              });
-            } else {
-              console.log("sucesss!!");
-              res.json({
-                submit: true,
-              });
-            }
-          });
-        }
-      });
-    }
-  });
-});
-app.post("/morloanform", (req, res) => {
   const {
     gname,
     grelation,
-    location,
-    empstatus,
+    type,
+    investment,
     custid,
     loanid,
     amt,
+    doclink,
   } = req.body;
 
   var sql = "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
@@ -166,39 +116,101 @@ app.post("/morloanform", (req, res) => {
       console.log("successfully inserted");
       var gid = result.insertId;
       var sql1 =
-        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
-      mysqlConnection.query(sql1, [custid, loanid, amt, gid], function (
-        err,
-        result1
-      ) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("inserted succesfully");
-          console.log("Last insert ID:", result1.insertId);
-          var id = result1.insertId;
-          console.log(id);
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id,doclink) VALUES (?,?,?,?,?)";
+      mysqlConnection.query(
+        sql1,
+        [custid, loanid, amt, gid, doclink],
+        function (err, result1) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("inserted succesfully");
+            console.log("Last insert ID:", result1.insertId);
+            var id = result1.insertId;
+            console.log(id);
 
-          var sql2 =
-            "INSERT INTO mortgageloanform (form_id,location,emp_status) VALUES (?,?,?)";
-          mysqlConnection.query(sql2, [id, location, empstatus], function (
-            err,
-            result2
-          ) {
-            if (err) {
-              console.log("error in second insertion");
-              res.json({
-                submit: false,
-              });
-            } else {
-              console.log("sucesss!!");
-              res.json({
-                submit: true,
-              });
-            }
-          });
+            var sql2 =
+              "INSERT INTO businessloanform (form_id,type_of_business,investment_amt) VALUES (?,?,?)";
+            mysqlConnection.query(sql2, [id, type, investment], function (
+              err,
+              result2
+            ) {
+              if (err) {
+                console.log("error in second insertion");
+                res.json({
+                  submit: false,
+                });
+              } else {
+                console.log("sucesss!!");
+                res.json({
+                  submit: true,
+                });
+              }
+            });
+          }
         }
-      });
+      );
+    }
+  });
+});
+app.post("/morloanform", (req, res) => {
+  const {
+    gname,
+    grelation,
+    location,
+    empstatus,
+    custid,
+    loanid,
+    amt,
+    doclink,
+  } = req.body;
+
+  var sql = "INSERT INTO GURANTOR (g_name,g_relation) values (?,?)";
+  mysqlConnection.query(sql, [gname, grelation], function (
+    err,
+    result,
+    fields
+  ) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("successfully inserted");
+      var gid = result.insertId;
+      var sql1 =
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id,doclink) VALUES (?,?,?,?,?)";
+      mysqlConnection.query(
+        sql1,
+        [custid, loanid, amt, gid, doclink],
+        function (err, result1) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("inserted succesfully");
+            console.log("Last insert ID:", result1.insertId);
+            var id = result1.insertId;
+            console.log(id);
+
+            var sql2 =
+              "INSERT INTO mortgageloanform (form_id,location,emp_status) VALUES (?,?,?)";
+            mysqlConnection.query(sql2, [id, location, empstatus], function (
+              err,
+              result2
+            ) {
+              if (err) {
+                console.log("error in second insertion");
+                res.json({
+                  submit: false,
+                });
+              } else {
+                console.log("sucesss!!");
+                res.json({
+                  submit: true,
+                });
+              }
+            });
+          }
+        }
+      );
     }
   });
 });
@@ -317,26 +329,26 @@ app.post("/viewstatus", (req, res) => {
           });
         }
         if (!result1.length) {
-          var sq="SELECT form_id FROM payments where form_id=?";
-          mysqlConnection.query(sq, fid, function (err,result4){
-            if(err){
+          var sq = "SELECT form_id FROM payments where form_id=?";
+          mysqlConnection.query(sq, fid, function (err, result4) {
+            if (err) {
               console.log(err);
               res.json({
                 exist: "error",
               });
             }
-            if(result4.length){
+            if (result4.length) {
               console.log("Already paid");
               res.json({
                 exist: "pay",
               });
-            }else{
+            } else {
               console.log("Form is not seen");
               res.json({
                 exist: "not seen",
               });
             }
-          })
+          });
         } else {
           var s2 =
             "SELECT form_id,status,date FROM loanstatus where form_id=? order by date";
@@ -360,7 +372,17 @@ app.post("/viewstatus", (req, res) => {
 });
 
 app.post("/loanform/edu", (req, res) => {
-  const { custid, clg, course, per, amt, gname, grelation, loanid } = req.body;
+  const {
+    custid,
+    clg,
+    course,
+    per,
+    amt,
+    gname,
+    grelation,
+    loanid,
+    doclink,
+  } = req.body;
   // var sql =
   //   "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (80134, 'e1111', 100000,1)";
   var sql2 = "INSERT INTO gurantor(g_name,g_relation) VALUES(?,?)";
@@ -370,8 +392,8 @@ app.post("/loanform/edu", (req, res) => {
     } else {
       var gp = result.insertId;
       var sql =
-        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id) VALUES (?,?,?,?)";
-      mysqlConnection.query(sql, [custid, loanid, amt, gp], function (
+        "INSERT INTO loanform (cust_id,loan_id,req_amt,g_id,doclink) VALUES (?,?,?,?,?)";
+      mysqlConnection.query(sql, [custid, loanid, amt, gp, doclink], function (
         err,
         result2
       ) {
@@ -470,15 +492,15 @@ app.post("/pay/details", (req, res) => {
   const { formid } = req.body;
   console.log(req.body.formid);
   var q = "select form_id from loanform where form_id=?";
-  mysqlConnection.query(q, [formid], function (err, result, fields){
-    if(err){
+  mysqlConnection.query(q, [formid], function (err, result, fields) {
+    if (err) {
       console.log(err);
-    }else if(result.length){
-      var q1 = "select form_id from payments where form_id=?"
-      mysqlConnection.query(q1, [formid], function (err, result1, fields){
-        if(err){
+    } else if (result.length) {
+      var q1 = "select form_id from payments where form_id=?";
+      mysqlConnection.query(q1, [formid], function (err, result1, fields) {
+        if (err) {
           console.log(err);
-        }else if(result1.length){
+        } else if (result1.length) {
           var sql = "select * from payments where form_id=?";
 
           mysqlConnection.query(sql, [formid], function (err, result2, fields) {
@@ -488,49 +510,51 @@ app.post("/pay/details", (req, res) => {
               res.send(result2);
               console.log(result2);
             }
-        });
-    }else{
-      console.log("application not yet acceted");
-      res.json({ do: "view" });
+          });
+        } else {
+          console.log("application not yet acceted");
+          res.json({ do: "view" });
+        }
+      });
+    } else {
+      console.log("Invalid id");
+      res.json({ do: "invalid" });
     }
   });
-
-
-}else{
-  console.log("Invalid id");
-  res.json({ do: "invalid" });
-}
-});
 });
 
-app.post("/makepayment",(req,res) => {
-  const { formid ,amount } = req.body;
+app.post("/makepayment", (req, res) => {
+  const { formid, amount } = req.body;
   console.log(req.body.formid);
   console.log(req.body.amount);
   var q = "select final_amount,amount_paid from payments where form_id=?";
-  mysqlConnection.query(q, [formid],function(err, result1,fields){
-    if(err){
+  mysqlConnection.query(q, [formid], function (err, result1, fields) {
+    if (err) {
       console.log(err);
-    } if(result1[0].final_amount-result1[0].amount_paid>=amount){
+    }
+    if (result1[0].final_amount - result1[0].amount_paid >= amount) {
       console.log(result1[0].final_amount);
       console.log(result1[0].amount_paid);
-      var q1 = "update loanmg.payments set amount_paid=amount_paid+? where form_id=?;"
+      var q1 =
+        "update loanmg.payments set amount_paid=amount_paid+? where form_id=?;";
 
-      mysqlConnection.query(q1, [amount,formid], function(err, result2, fields){
-        if(err){
+      mysqlConnection.query(q1, [amount, formid], function (
+        err,
+        result2,
+        fields
+      ) {
+        if (err) {
           console.log(err);
-        } else{
+        } else {
           res.json({ done: true });
         }
       });
-
-    } else{
+    } else {
       console.log("entered amount is not in range");
-        res.json({ ok: false });
+      res.json({ ok: false });
     }
-  })
-
-})
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

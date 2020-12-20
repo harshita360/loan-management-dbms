@@ -23,20 +23,20 @@ const Footer = () => {
       <br />
       <br />
       <center>
-        <button class="ui circular facebook icon button">
-          <i class="facebook icon" style={{ color: "white" }}></i>
+        <button className="ui circular facebook icon button">
+          <i className="facebook icon" style={{ color: "white" }}></i>
         </button>
         &nbsp;&nbsp;
-        <button class="ui circular twitter icon button">
-          <i class="twitter icon" style={{ color: "white" }}></i>
+        <button className="ui circular twitter icon button">
+          <i className="twitter icon" style={{ color: "white" }}></i>
         </button>
         &nbsp;&nbsp;
-        <button class="ui circular linkedin icon button">
-          <i class="linkedin icon" style={{ color: "white" }}></i>
+        <button className="ui circular linkedin icon button">
+          <i className="linkedin icon" style={{ color: "white" }}></i>
         </button>
         &nbsp;&nbsp;
-        <button class="ui circular google plus icon button">
-          <i class="google plus icon" style={{ color: "white" }}></i>
+        <button className="ui circular google plus icon button">
+          <i className="google plus icon" style={{ color: "white" }}></i>
         </button>
       </center>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import history from "../history";
 
 class LoanFormMor extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class LoanFormMor extends React.Component {
       custid,
       location,
       empstatus,
-      amount,
+      amt,
       gname,
       grelation,
       loanid,
@@ -56,7 +57,7 @@ class LoanFormMor extends React.Component {
       error.emps = "You need to enter employment status";
       isValid = false;
     }
-    if (!amount) {
+    if (!amt) {
       error.amount = "You need to enter required amount";
       isValid = false;
     }
@@ -91,10 +92,12 @@ class LoanFormMor extends React.Component {
           gname: this.state.gname,
           grelation: this.state.grelation,
           loanid: this.state.loanid,
+          doclink: this.state.doclink,
         })
         .then(function (res) {
           if (res.data.submit) {
             console.log("inserted msg from front end");
+            history.push("/done");
           }
         })
         .catch(function (error) {

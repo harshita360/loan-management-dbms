@@ -10,6 +10,7 @@ class Payments extends React.Component {
       amount: 0,
       details: [],
       do: "display",
+      final: 0,
     };
   }
   viewPayment = async () => {
@@ -29,10 +30,18 @@ class Payments extends React.Component {
         console.log("Application is not yet accepted");
         this.setState({ do: response.data.do });
       } else {
-        this.setState({
-          details: response.data,
-        });
-        console.log(this.state.status);
+        console.log(response.data[0].amount_paid);
+        console.log(response.data[0].interest_amt);
+        if (
+          response.data[0].amount_paid ===
+          response.data[0].interest_amt + response.data[0].total_amount
+        ) {
+          this.setState({ do: "paid" });
+        } else {
+          this.setState({
+            details: response.data,
+          });
+        }
       }
     } else {
       console.log("there is error in input");
@@ -52,25 +61,68 @@ class Payments extends React.Component {
     return isValid;
   }
 
+  add = (x, y) => {
+    var res = x + y;
+
+    return res;
+  };
+
+  sub = (x, y, z) => {
+    var k = x + y;
+    var res = k - z;
+    return res;
+  };
+
   renderPaymentDeatils = () => {
     console.log("called");
     return this.state.details.map((elem) => {
       console.log(elem);
       return (
-        <div key={elem.form_id} className="item">
-          <label> Form ID:</label>
-          {elem.form_id}
-          <br />
-          <label>Amount for which loan has been issued:</label>
-          {elem.total_amount}
-          <br />
-          <label>Interest amount</label>
-          {elem.interest_amt}
-          <br />
-          <label> Total amount:</label>
-          {elem.final_amount}
-          <br />
-          <label>Amount left to pay:</label>
+        <div
+          key={elem.form_id}
+          className="ui relaxed divided list"
+          style={{
+            color: "white",
+            border: "2px solid #990000",
+            padding: "10px",
+            width: "40vw",
+          }}
+        >
+          <div className="item">
+            <label>
+              {" "}
+              Form ID: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;
+            </label>
+            {elem.form_id}
+            <br />
+          </div>
+          <div className="item">
+            <label>Initial Loan Amount: &nbsp; &nbsp; &nbsp;</label>
+            Rs. &nbsp; {elem.total_amount}
+            <br />
+          </div>
+          <div className="item">
+            <label>
+              Interest amount: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{" "}
+            </label>
+            Rs. &nbsp; {elem.interest_amt}
+            <br />
+          </div>
+          <div className="item">
+            <label>
+              {" "}
+              Total amount: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;
+            </label>
+            Rs. &nbsp; {this.add(elem.total_amount, elem.interest_amt)}
+            <br />
+          </div>
+          <div className="item">
+            <label>Amount left to pay: &nbsp; &nbsp; &nbsp; </label>
+            Rs. &nbsp;{" "}
+            {this.sub(elem.total_amount, elem.interest_amt, elem.amount_paid)}
+          </div>
         </div>
       );
     });
@@ -92,31 +144,25 @@ class Payments extends React.Component {
       alert("entered amount not in range");
     }
   };
-  // <div className="field">
-  //   <label>Card Type</label>
-  //   <div className="ui selection dropdown">
-  //     <input type="hidden" name="card[type]" />
-  //     <div className="default text">Type</div>
-  //     <i className="dropdown icon"></i>
-  //     <div className="menu">
-  //       <div className="item" data-value="visa">
-  //         <i className="visa icon"></i>
-  //         Visa
-  //       </div>
-  //       <div className="item" data-value="amex">
-  //         <i className="amex icon"></i>
-  //         American Express
-  //       </div>
-  //       <div className="item" data-value="discover">
-  //         <i className="discover icon"></i>
-  //         Discover
-  //       </div>
-  //     </div>
-  //   </div>
 
   render() {
     console.log(this.state.details);
     const { error } = this.state;
+    if (this.state.do === "paid") {
+      return (
+        <div className="ui negative message">
+          <i className="close icon"></i>
+          <center>
+            <h2>
+              WELCOME BACK!
+              <br />
+              <br />
+              You have already paid the required loan amount!
+            </h2>
+          </center>
+        </div>
+      );
+    }
     if (this.state.do === "display") {
       return (
         <div className="ui container">
@@ -127,7 +173,6 @@ class Payments extends React.Component {
               style={{ color: "#00ff7f" }}
             ></i>
           </h1>
-          <br />
           <br />
 
           <label>
@@ -160,8 +205,8 @@ class Payments extends React.Component {
             </button>
           </div>
           <br />
-          <br />
-          <div className="ui relaxed divided list">
+
+          <div>
             <div>{this.renderPaymentDeatils()}</div>
           </div>
           <button
@@ -224,12 +269,12 @@ class Payments extends React.Component {
                 ></i>
                 <hr />
 
-                <div class="field">
+                <div className="field">
                   <label style={{ color: "white", fontSize: "15px" }}>
                     Name
                   </label>
-                  <div class="two fields">
-                    <div class="field">
+                  <div className="two fields">
+                    <div className="field">
                       <input
                         type="text"
                         name="shipping[first-name]"
@@ -241,7 +286,7 @@ class Payments extends React.Component {
                         }}
                       />
                     </div>
-                    <div class="field">
+                    <div className="field">
                       <input
                         type="text"
                         name="shipping[last-name]"
@@ -255,7 +300,7 @@ class Payments extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div class="field">
+                <div className="field">
                   <select
                     style={{
                       backgroundColor: "#323232",
@@ -269,8 +314,8 @@ class Payments extends React.Component {
                     <option value="2">Visa</option>
                   </select>
                 </div>
-                <div class="fields">
-                  <div class="seven wide field">
+                <div className="fields">
+                  <div className="seven wide field">
                     <label style={{ color: "white", fontSize: "15px" }}>
                       Card Number
                     </label>
