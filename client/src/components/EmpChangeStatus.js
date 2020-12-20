@@ -26,8 +26,10 @@ class EmpChangeStatus extends React.Component {
         //history.push("/dashboard");
         if (res.data.ok) {
           console.log("done!!");
+          alert("Status Changed!");
         } else {
           console.log("thats already being reviewed");
+          alert("This application is already being reviewed");
         }
       })
       .catch(function (error) {

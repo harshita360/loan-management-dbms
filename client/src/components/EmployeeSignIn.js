@@ -50,6 +50,7 @@ class EmployeeSignIn extends React.Component {
             history.push(`./emp/editstatus/${empid}`);
           } else {
             console.log("unsucessfull login");
+            alert("Wrong credentials!");
           }
         })
         .catch(function (error) {

@@ -113,10 +113,11 @@ class LoanFormEdu extends React.Component {
             history.push("/done");
           } else {
             console.log("unsuccessfull");
+            alert("unsuccessful!");
           }
         })
         .catch(function (error) {
-          console.log("error in submission");
+          alert("error in submission");
           console.log(error);
         });
     } else {

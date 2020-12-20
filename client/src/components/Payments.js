@@ -89,6 +89,7 @@ class Payments extends React.Component {
       history.push("/done");
     } else {
       console.log("entered amount not in range");
+      alert("entered amount not in range");
     }
   };
   // <div className="field">

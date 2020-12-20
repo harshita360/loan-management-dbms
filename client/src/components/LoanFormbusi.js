@@ -105,6 +105,7 @@ class LoanFormbusi extends React.Component {
         })
         .catch(function (error) {
           console.log(error);
+          alert("there was an error!");
         });
     } else {
       console.log("there is an error in input");
