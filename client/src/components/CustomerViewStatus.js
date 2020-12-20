@@ -25,7 +25,10 @@ class CustomerViewStatus extends React.Component {
     } else if (response.data.exist === "not seen") {
       console.log("not viewed application");
       this.setState({ exist: response.data.exist });
-    } else {
+    } else if(response.data.exist === "pay"){
+      console.log("Already paid");
+      this.setState({ exist: response.data.exist });
+    }else {
       this.setState({
         exist: "status",
         status: [...this.state.status, ...response.data],
@@ -141,7 +144,18 @@ class CustomerViewStatus extends React.Component {
              </div><p>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your application's status will be updated soon</p>
              </div>
-    } else if (this.state.exist === "status") {
+    }else if (this.state.exist === "pay"){
+      return <div class="ui green message">
+              <i class="close icon"></i>
+              <center>
+              <h2>
+              You have already paid the total laon amount😁‍</h2>
+              <br />
+              <br />
+              <p>For further information contact bank</p>
+              </center></div>;
+    }
+    else if (this.state.exist === "status") {
       console.log("else part");
       return <div className="ui container">
       <table class="ui fixed table">

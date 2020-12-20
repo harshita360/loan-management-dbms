@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "harshita",
+  password: "joshi@1965",
   database: "loanmg",
   multipleStatements: true,
 });
@@ -316,10 +316,26 @@ app.post("/viewstatus", (req, res) => {
           });
         }
         if (!result1.length) {
-          console.log("Form is not seen");
-          res.json({
-            exist: "not seen",
-          });
+          var sq="SELECT form_id FROM payments where form_id=?";
+          mysqlConnection.query(sq, fid, function (err,result4){
+            if(err){
+              console.log(err);
+              res.json({
+                exist: "error",
+              });
+            }
+            if(result4.length){
+              console.log("Already paid");
+              res.json({
+                exist: "pay",
+              });
+            }else{
+              console.log("Form is not seen");
+              res.json({
+                exist: "not seen",
+              });
+            }
+          })
         } else {
           var s2 =
             "SELECT form_id,status,date FROM loanstatus where form_id=? order by date";
