@@ -47,10 +47,12 @@ class CustomerSignIn extends React.Component {
             history.push("/customer/dashboard");
           } else {
             console.log("unsucessfull login");
+            alert("wrong credentials! try again");
           }
         })
         .catch(function (error) {
           console.log(error);
+          alert("there was an error");
         });
     } else {
       console.log("there is error in input");
@@ -61,52 +63,59 @@ class CustomerSignIn extends React.Component {
     const { error } = this.state;
     return (
       <div className="ui centered grid">
-      <div className="three wide column">
-      <center>
-      <i class="fas fa-hand-holding-usd fa-5x"></i>
-      </center>
-        <h3>Sign In </h3>
+        <div className="three wide column">
+          <center>
+            <i
+              className="fas fa-hand-holding-usd fa-5x"
+              style={{ color: "white" }}
+            ></i>
+          </center>
+          <h3>Sign In </h3>
 
-        <input
-          placeholder="enter customer Id"
-          onChange={(e) => this.setState({ customerId: e.target.value })}
-          className="sign id"
-          type="id"
-        />
-        {error.custid !== "" && (
-          <span style={{ color: "yellow" }}>{this.state.error.custid}</span>
-        )}
-        <br />
-        <input
-          placeholder="enter password"
-          onChange={(e) => this.setState({ password: e.target.value })}
-          className="sign pass"
-          type="pass"
-        />
-        {error.pass !== "" && (
-          <span style={{ color: "yellow" }}>{this.state.error.pass}</span>
-        )}
-        <br />
-        <input
-          placeholder="enter account number"
-          onChange={(e) => this.setState({ account: e.target.value })}
-          className="sign ac"
-          type="ac"
-        />
-        {error.acc !== "" && (
-          <span style={{ color: "yellow" }}>{this.state.error.acc}</span>
-        )}
-        <br />
+          <input
+            placeholder="enter customer Id"
+            onChange={(e) => this.setState({ customerId: e.target.value })}
+            className="sign id"
+            type="id"
+            style={{ color: "white" }}
+          />
+          {error.custid !== "" && (
+            <span style={{ color: "yellow" }}>{this.state.error.custid}</span>
+          )}
+          <br />
+          <input
+            placeholder="enter password"
+            onChange={(e) => this.setState({ password: e.target.value })}
+            className="sign pass"
+            type="pass"
+            style={{ color: "white" }}
+          />
+          {error.pass !== "" && (
+            <span style={{ color: "yellow" }}>{this.state.error.pass}</span>
+          )}
+          <br />
+          <input
+            placeholder="enter account number"
+            onChange={(e) => this.setState({ account: e.target.value })}
+            className="sign ac"
+            type="ac"
+            style={{ color: "white" }}
+          />
+          {error.acc !== "" && (
+            <span style={{ color: "yellow" }}>{this.state.error.acc}</span>
+          )}
+          <br />
 
-        <br />
-        <br />
-        <div className="ui large buttons">
-        <button className="ui green button"
-         onClick={this.handleSignIn}>Sign In</button>
-         <div className="or"></div>
-         <button className="ui red button">Cancel</button>
-       </div>
-      </div>
+          <br />
+          <br />
+          <div className="ui large buttons">
+            <button className="ui green button" onClick={this.handleSignIn}>
+              Sign In
+            </button>
+            <div className="or"></div>
+            <button className="ui red button">Cancel</button>
+          </div>
+        </div>
       </div>
     );
   }

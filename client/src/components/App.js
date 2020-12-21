@@ -16,6 +16,7 @@ import Footer from "./Footer";
 import HomePage from "./HomePage";
 import CustomerDashboard from "./CustomerDashboard";
 import Payments from "./Payments";
+import FormSuccess from "./FormSuccess";
 
 class App extends React.Component {
   showData = async () => {
@@ -73,6 +74,7 @@ class App extends React.Component {
             <Route exact path="/done" component={Dummy} />
             <Route exact path="/viewloans" component={LoansList} />
             <Route exact path="/educationform" component={LoanFormEdu} />
+            <Route exact path="/success/:formid" component={FormSuccess} />
             <Route exact path="/businessform" component={LoanFormbusi} />
             <Route exact path="/mortgageform" component={LoanFormMor} />
             <Route
@@ -93,7 +95,6 @@ class App extends React.Component {
         <br />
         <br />
         <br />
-
 
         <br />
         <br />

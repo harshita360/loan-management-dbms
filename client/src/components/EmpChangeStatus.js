@@ -126,6 +126,12 @@ class EmpChangeStatus extends React.Component {
               </div>
               <div className="item">
                 <label style={{ color: "#900C3F" }}>
+                  <h5>Contact Number:&nbsp;</h5>
+                </label>
+                {elem.phone_num}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
                   <h5>Institution Name:&nbsp;</h5>
                 </label>
                 {elem.college}
@@ -241,6 +247,12 @@ class EmpChangeStatus extends React.Component {
               </div>
               <div className="item">
                 <label style={{ color: "#900C3F" }}>
+                  <h5>Contact Number:&nbsp;</h5>
+                </label>
+                {elem.phone_num}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
                   <h5>Type of Business:&nbsp;</h5>
                 </label>
                 {elem.type_of_business}
@@ -351,6 +363,12 @@ class EmpChangeStatus extends React.Component {
                   <h5>State Of Residence:&nbsp;</h5>
                 </label>
                 {elem.state}
+              </div>
+              <div className="item">
+                <label style={{ color: "#900C3F" }}>
+                  <h5>Contact Number:&nbsp;</h5>
+                </label>
+                {elem.phone_num}
               </div>
               <div className="item">
                 <label style={{ color: "#900C3F" }}>

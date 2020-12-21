@@ -111,7 +111,8 @@ class LoanFormEdu extends React.Component {
           //history.push("/dashboard");
           if (res.data.submit) {
             console.log("submitted succesfully");
-            history.push("/done");
+            console.log(res.data.fid);
+            history.push(`./success/${res.data.fid}`);
           } else {
             console.log("unsuccessfull");
             alert("unsuccessful!");

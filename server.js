@@ -144,6 +144,7 @@ app.post("/busiloanform", (req, res) => {
                 console.log("sucesss!!");
                 res.json({
                   submit: true,
+                  fid: id,
                 });
               }
             });
@@ -205,6 +206,7 @@ app.post("/morloanform", (req, res) => {
                 console.log("sucesss!!");
                 res.json({
                   submit: true,
+                  fid: id,
                 });
               }
             });
@@ -266,7 +268,7 @@ app.post("/viewform", (req, res) => {
       var qe = result[0].loan_id;
       if (qe.charAt(0) === "e") {
         var q1 =
-          "SELECT g.g_name,g.g_relation,e.college,e.percentage,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,eduloanform e,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id";
+          "SELECT g.g_name,g.g_relation,c.mname,c.lname,c.mname,c.phone_num,c.state,e.college,e.percentage,ls.form_id,ls.loan_id,ls.req_amt,ls.doclink,lo.loan_name FROM gurantor g,eduloanform e,customer c,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id and ls.cust_id=c.customerId";
         mysqlConnection.query(q1, [id, qe], function (err, result1, fields) {
           if (err) {
             console.log(err);
@@ -278,7 +280,7 @@ app.post("/viewform", (req, res) => {
         });
       } else if (qe.charAt(0) == "b") {
         var q2 =
-          "SELECT g.g_name,g.g_relation,b.type_of_business,b.investment_amt,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,businessloanform b,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id;";
+          "SELECT g.g_name,g.g_relation,c.fname,c.lname,c.mname,c.phone_num,c.state,b.type_of_business,b.investment_amt,ls.form_id,ls.loan_id,ls.req_amt,ls.doclink,lo.loan_name FROM gurantor g,businessloanform b,customer c,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id and ls.cust_id=c.customerId;";
         mysqlConnection.query(q2, [id, qe], function (err, result2, fileds) {
           if (err) {
             console.log(err);
@@ -289,7 +291,7 @@ app.post("/viewform", (req, res) => {
         });
       } else {
         var q3 =
-          "SELECT g.g_name,g.g_relation,m.location,m.emp_status,ls.form_id,ls.loan_id,ls.req_amt,lo.loan_name FROM gurantor g,mortgageloanform m,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id";
+          "SELECT g.g_name,g.g_relation,c.fname,c.lname,c.mname,c.phone_num,c.state,m.location,m.emp_status,ls.form_id,ls.loan_id,ls.req_amt,ls.doclink,lo.loan_name FROM gurantor g,customer c,mortgageloanform m,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id and ls.cust_id=c.customerId";
         mysqlConnection.query(q3, [id, qe], function (err, result3, fields) {
           if (err) {
             console.log(err);
@@ -415,8 +417,11 @@ app.post("/loanform/edu", (req, res) => {
               });
             } else {
               console.log("sucesss!!");
+              // var y = result3.insertId;
+              // console.log(y);
               res.json({
                 submit: true,
+                fid: id,
               });
             }
           });
@@ -448,7 +453,7 @@ app.post("/emp/updatestatus", (req, res) => {
 
 app.get("/emp/geteducationforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,g.g_name,elf.college,elf.percentage from loanform l,customer c,gurantor g,loans lo,eduloanform elf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=elf.form_id and l.loan_id like 'e%' and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,elf.college,elf.percentage from loanform l,customer c,gurantor g,loans lo,eduloanform elf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=elf.form_id and l.loan_id like 'e%' and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {
@@ -462,7 +467,7 @@ app.get("/emp/geteducationforms", (req, res) => {
 
 app.get("/emp/getbusinessforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,g.g_name,blf.type_of_business,blf.investment_amt from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.businessloanform blf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=blf.form_id and l.loan_id like 'b%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,blf.type_of_business,blf.investment_amt from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.businessloanform blf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=blf.form_id and l.loan_id like 'b%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {
@@ -476,7 +481,7 @@ app.get("/emp/getbusinessforms", (req, res) => {
 
 app.get("/emp/getmortgageforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,g.g_name,mlf.location,mlf.emp_status from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.mortgageloanform mlf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=mlf.form_id and l.loan_id like 'm%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,mlf.location,mlf.emp_status from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.mortgageloanform mlf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=mlf.form_id and l.loan_id like 'm%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {

@@ -9,7 +9,7 @@ class Dummy extends React.Component {
           <div className="column" style={{ marginTop: "80px" }}>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
             <i
-              class="massive thumbs up outline icon"
+              className="massive thumbs up outline icon"
               style={{ color: "#14ff2a" }}
             ></i>
             <label style={{ color: "#14ff2a", fontSize: "50px" }}>

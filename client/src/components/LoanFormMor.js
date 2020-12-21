@@ -97,7 +97,7 @@ class LoanFormMor extends React.Component {
         .then(function (res) {
           if (res.data.submit) {
             console.log("inserted msg from front end");
-            history.push("/done");
+            history.push(`./success/${res.data.fid}`);
           }
         })
         .catch(function (error) {

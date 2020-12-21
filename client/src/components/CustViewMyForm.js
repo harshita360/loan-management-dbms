@@ -46,10 +46,30 @@ class CustViewMyForm extends React.Component {
             </label>
             {this.state.details.form_id}
           </div>
+
           <div
             className="ui relaxed divided list"
             style={{ fontSize: "16px", paddingLeft: "40px", color: "black" }}
           >
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Applicant Name:&nbsp;</h5>
+              </label>
+              {this.state.details.fname}&nbsp;{this.state.details.mname}&nbsp;
+              {this.state.details.lname}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Contact Number:&nbsp;</h5>
+              </label>
+              {this.state.details.phone_num}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>State of Residence:&nbsp;</h5>
+              </label>
+              {this.state.details.state}
+            </div>
             <div className="item">
               <label style={{ color: "#900C3F" }}>
                 <h5>Issued Loan ID:&nbsp;</h5>
@@ -74,6 +94,12 @@ class CustViewMyForm extends React.Component {
                 <h5>Investment Amount&nbsp;</h5>
               </label>
               {this.state.details.investment_amt}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Required Amount&nbsp;</h5>
+              </label>
+              {this.state.details.req_amt}
             </div>
             <div className="item">
               <label style={{ color: "#900C3F" }}>
@@ -117,6 +143,25 @@ class CustViewMyForm extends React.Component {
             className="ui relaxed divided list"
             style={{ fontSize: "16px", paddingLeft: "40px", color: "black" }}
           >
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Applicant Name:&nbsp;</h5>
+              </label>
+              {this.state.details.fname}&nbsp;{this.state.details.mname}&nbsp;
+              {this.state.details.lname}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Contact Number:&nbsp;</h5>
+              </label>
+              {this.state.details.phone_num}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>State of Residence:&nbsp;</h5>
+              </label>
+              {this.state.details.state}
+            </div>
             <div className="item">
               <label style={{ color: "#900C3F" }}>
                 <h5>Issued Loan ID:&nbsp;</h5>
@@ -191,6 +236,25 @@ class CustViewMyForm extends React.Component {
           >
             <div className="item">
               <label style={{ color: "#900C3F" }}>
+                <h5>Applicant Name:&nbsp;</h5>
+              </label>
+              {this.state.details.fname}&nbsp;{this.state.details.mname}&nbsp;
+              {this.state.details.lname}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>Contact Number:&nbsp;</h5>
+              </label>
+              {this.state.details.phone_num}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
+                <h5>State of Residence:&nbsp;</h5>
+              </label>
+              {this.state.details.state}
+            </div>
+            <div className="item">
+              <label style={{ color: "#900C3F" }}>
                 <h5>Issued Loan ID:&nbsp;</h5>
               </label>
               {this.state.details.loan_id}
@@ -248,7 +312,7 @@ class CustViewMyForm extends React.Component {
             <label>
               <h2>Enter Formid &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</h2>{" "}
             </label>
-            <div class="ui corner labeled input">
+            <div className="ui corner labeled input">
               <input
                 onChange={(e) => this.setState({ formid: e.target.value })}
                 style={{
@@ -260,12 +324,12 @@ class CustViewMyForm extends React.Component {
                 }}
               />
               <div
-                class="ui corner label"
+                className="ui corner label"
                 style={{
                   marginTop: "50px",
                 }}
               >
-                <i class="asterisk icon"></i>
+                <i className="asterisk icon"></i>
               </div>
             </div>
             <br />
