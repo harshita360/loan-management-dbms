@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./homepage.css";
 import background from "../image.jpg";
@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 class HomePage extends React.Component {
   componentDidMount() {
-    Aos.init({ duration:2000 });
+    Aos.init({ duration: 2000 });
   }
   render() {
     return (
@@ -104,7 +104,10 @@ class HomePage extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div data-aos="flip-right" className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div
+                data-aos="flip-right"
+                className="col-xl-4 col-lg-4 col-md-4 col-sm-12"
+              >
                 <div className="service-box">
                   <i>
                     <img
@@ -119,7 +122,10 @@ class HomePage extends React.Component {
                   </p>
                 </div>
               </div>
-              <div data-aos="flip-down" className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div
+                data-aos="flip-down"
+                className="col-xl-4 col-lg-4 col-md-4 col-sm-12"
+              >
                 <div className="service-box">
                   <i>
                     <img
@@ -135,7 +141,10 @@ class HomePage extends React.Component {
                   </p>
                 </div>
               </div>
-              <div data-aos="flip-left" className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div
+                data-aos="flip-left"
+                className="col-xl-4 col-lg-4 col-md-4 col-sm-12"
+              >
                 <div className="service-box">
                   <i>
                     <img
