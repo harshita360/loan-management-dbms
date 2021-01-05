@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./EmpChangeStatus.css";
+import { Link } from "react-router-dom";
 
 class EmpChangeStatus extends React.Component {
   constructor(props) {
@@ -437,6 +438,18 @@ class EmpChangeStatus extends React.Component {
         <center>
           <h2>List of Application Forms</h2>
         </center>
+
+        <Link
+          to="/update/loan"
+          className="ui big right floated button"
+          style={{
+            marginRight: "15px",
+            backgroundColor: "#990000",
+            color: "white",
+          }}
+        >
+          Update Loan
+        </Link>
         <br />
         <br />
         <div style={{ padding: "25px" }}>

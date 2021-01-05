@@ -453,7 +453,7 @@ app.post("/emp/updatestatus", (req, res) => {
 
 app.get("/emp/geteducationforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,elf.college,elf.percentage from loanform l,customer c,gurantor g,loans lo,eduloanform elf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=elf.form_id and l.loan_id like 'e%' and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,g.g_relation,elf.college,elf.percentage from loanform l,customer c,gurantor g,loans lo,eduloanform elf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=elf.form_id and l.loan_id like 'e%' and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {
@@ -467,7 +467,7 @@ app.get("/emp/geteducationforms", (req, res) => {
 
 app.get("/emp/getbusinessforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,blf.type_of_business,blf.investment_amt from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.businessloanform blf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=blf.form_id and l.loan_id like 'b%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,g.g_relation,blf.type_of_business,blf.investment_amt from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.businessloanform blf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=blf.form_id and l.loan_id like 'b%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {
@@ -481,7 +481,7 @@ app.get("/emp/getbusinessforms", (req, res) => {
 
 app.get("/emp/getmortgageforms", (req, res) => {
   var sql =
-    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,mlf.location,mlf.emp_status from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.mortgageloanform mlf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=mlf.form_id and l.loan_id like 'm%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
+    "SELECT l.form_id,l.cust_id,l.loan_id,l.g_id,lo.loan_name,c.fname,c.mname,c.lname,c.state,c.phone_num,g.g_name,g.g_relation,mlf.location,mlf.emp_status from loanmg.loanform l,loanmg.customer c,loanmg.gurantor g,loanmg.loans lo,loanmg.mortgageloanform mlf where l.cust_id=c.customerId and l.g_id=g.g_id and l.loan_id=lo.loan_id and l.form_id=mlf.form_id and l.loan_id like 'm%'and l.form_id not in (SELECT form_id from loanmg.loanstatus where status='ACCEPTED' or status='REJECTED');";
 
   mysqlConnection.query(sql, function (err, result, fields) {
     if (err) {
@@ -557,6 +557,24 @@ app.post("/makepayment", (req, res) => {
     } else {
       console.log("entered amount is not in range");
       res.json({ ok: false });
+    }
+  });
+});
+app.post("/updateloan", async (req, res) => {
+  const { loanid, irate } = req.body;
+  console.log(req.body.loanid);
+  console.log(req.body.irate);
+  var sql = "CALL new_procedure(?,?)";
+  mysqlConnection.query(sql, [loanid, irate], function (err, result, fields) {
+    console.log(result);
+    if (err) {
+      console.log("error has ocuured");
+      console.log(err);
+    } else {
+      console.log("success");
+      res.json({
+        auth: true,
+      });
     }
   });
 });

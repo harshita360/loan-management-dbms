@@ -17,6 +17,8 @@ import HomePage from "./HomePage";
 import CustomerDashboard from "./CustomerDashboard";
 import Payments from "./Payments";
 import FormSuccess from "./FormSuccess";
+import EmployeeUpdate from "./EmployeeUpdate";
+import loanlogo from "../loanlogo.PNG";
 
 class App extends React.Component {
   showData = async () => {
@@ -36,13 +38,17 @@ class App extends React.Component {
           style={{ backgroundColor: "#990000", color: "white", height: "10vh" }}
         >
           <a href="/#" className="active item" style={{ color: "white" }}>
-            Home
+            <img
+              src={loanlogo}
+              alt="ENSURE"
+              style={{ width: "9vw", height: "8vh" }}
+            />
           </a>
           <a href="/#" className="item" style={{ color: "white" }}>
-            Messages
+            Loan Schemes
           </a>
           <a href="/#" className="item" style={{ color: "white" }}>
-            Friends
+            About Us
           </a>
           <div className="right menu">
             <div className="item">
@@ -56,7 +62,7 @@ class App extends React.Component {
               </div>
             </div>
             <a href="/empsignin" className="ui item" style={{ color: "white" }}>
-              Employee
+              Employee SignIn
             </a>
           </div>
         </div>
@@ -77,6 +83,7 @@ class App extends React.Component {
             <Route exact path="/success/:formid" component={FormSuccess} />
             <Route exact path="/businessform" component={LoanFormbusi} />
             <Route exact path="/mortgageform" component={LoanFormMor} />
+            <Route exact path="/update/loan" component={EmployeeUpdate} />
             <Route
               exact
               path="/emp/editstatus/:id"
@@ -88,14 +95,6 @@ class App extends React.Component {
           </div>
         </Router>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
         <br />
         <br />
 

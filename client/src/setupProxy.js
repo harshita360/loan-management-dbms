@@ -66,4 +66,9 @@ module.exports = function (app) {
       target: "http://localhost:5000",
     })
   );
+  app.use(
+    createProxyMiddleware("/updateloan", {
+      target: "http://localhost:5000",
+    })
+  );
 };
