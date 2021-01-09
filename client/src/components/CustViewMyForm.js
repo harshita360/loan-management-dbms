@@ -4,23 +4,31 @@ import axios from "axios";
 class CustViewMyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { formid: 0, form: [], lid: "true", details: {} };
+    this.state = { formid: 0, form: [], lid: "true", details: {},app:"va" };
   }
 
   getform = async () => {
     console.log(this.state.formid);
+    console.log(this.state.lid);
     console.log("function called");
     const response = await axios.post("/viewform", {
       formid: this.state.formid,
     });
-    console.log(response.data);
-    console.log(response.data[0].loan_id);
+    console.log(response.data.lid);
+    //console.log(response.data[0].loan_id);
+    if(response.data.lid==="invalid"){
+      this.setState({
+        lid:response.data.lid
+      });
+    }
 
+   if(response.data.lid!=="invalid"){
     this.setState({
       lid: response.data[0].loan_id,
       form: [...this.state.form, ...response.data],
       details: response.data[0],
     });
+}
     console.log(this.state.form);
     //  console.log(this.state.lid);
   };
@@ -364,7 +372,18 @@ class CustViewMyForm extends React.Component {
           </div>
         </div>
       );
-    } else if (this.state.lid.charAt(0) === "b") {
+    }else if(this.state.lid.charAt(0) === "i"){
+      return <div class="ui negative message">
+              <i class="close icon"></i>
+              <center>
+              <h2>
+              OOPS🤦‍
+              <br />
+              <br />
+              Form ID is invalid
+              </h2></center></div>;
+    }
+    else if (this.state.lid.charAt(0) === "b") {
       return (
         <div>
           <h2>YOUR APPLICATION</h2>

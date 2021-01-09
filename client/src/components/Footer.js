@@ -15,10 +15,11 @@ const Footer = () => {
       <br />
 
       <ul id="menu">
-        <li>SELL ON CHAMB</li>
-        <li>BUY ON CHAMB</li>
-        <li>COMPANY</li>
-        <li>INDUSTRIES</li>
+        <li>FINANCE</li>
+        <li>LOANS</li>
+        <li>PAYMENTS</li>
+        <li>SERVICES</li>
+
       </ul>
       <br />
       <br />

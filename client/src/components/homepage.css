@@ -38,12 +38,12 @@
   color: #4f344b;
 }
 .service {
-  background: #464b4e;
+  background: inherit;
   padding-top: 30px;
   padding-bottom: 90px;
 }
 .service-box {
-  background: white;
+  background: rgb(50 50 50);
   color: black;
 }
 .title {
@@ -54,10 +54,10 @@
 }
 .service .service-box {
   padding: 30px 20px;
-  box-shadow: #14ff2a 0px 0px 19px 0px;
+  box-shadow: #21ba45 0px 0px 19px 0px;
   margin-bottom: 30px;
   text-align: center;
-  color: #000;
+  color: #fff;
 }
 
 .service .service-box i img {
@@ -68,7 +68,7 @@
   font-weight: 500;
   font-size: 25px;
   line-height: 10px;
-  color: black;
+  color: white;
   padding-right: 80px;
 }
 .second {
@@ -76,7 +76,7 @@
 }
 
 .service .service-box p {
-  color: black;
+  color: white;
   font-size: 16px;
   line-height: 20px;
 }

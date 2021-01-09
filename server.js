@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "harshita",
+  password: "joshi@1965",
   database: "loanmg",
   multipleStatements: true,
 });
@@ -261,7 +261,7 @@ app.post("/viewform", (req, res) => {
   mysqlConnection.query(q, [id], function (err, result, fields) {
     if (err) {
       console.log(err);
-    } else {
+    } if(result.length) {
       console.log("proceeding");
       console.log(result);
       console.log(result[0].loan_id);
@@ -301,6 +301,11 @@ app.post("/viewform", (req, res) => {
           }
         });
       }
+    }else{
+      console.log("Invalid id");
+      res.json({
+        lid:"invalid"
+      });
     }
   });
 });

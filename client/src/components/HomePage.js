@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 class HomePage extends React.Component {
   componentDidMount() {
-    Aos.init({ duration: 2000 });
+    Aos.init({ duration: 1500 });
   }
   render() {
     return (
@@ -55,40 +55,35 @@ class HomePage extends React.Component {
 
         <section id="features">
           <div className="row">
-            <div data-aos="fade-in" className="feature-box col-lg-4">
+            <div data-aos="zoom-in" className="feature-box col-lg-4">
               <center>
                 <i
                   className="fas fa-user-graduate fa-5x"
-                  style={{ color: "#00ff7f" }}
+                  style={{ color: "#21ba45" }}
                 ></i>
                 <h5>EDUCATION</h5>
-                <p>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</p>
-                <p>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</p>
-                <p>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</p>
+                <p>Quality education is a must for a complete and successful life.
+                Now You can Choose Better Career Option with Education Loan with Low Rate</p>
               </center>
             </div>
-            <div data-aos="fade-in" className="feature-box col-lg-4">
+            <div data-aos="zoom-in" className="feature-box col-lg-4">
               <i
                 className="fas fa-business-time fa-5x"
-                style={{ color: "#00ff7f" }}
+                style={{ color: "#21ba45" }}
               ></i>
               <h5>BUSINESS</h5>
-              <p>
-                IMPORTANT: State Bank of India never ask for your user id /
-                password / pin no. through phone call / SMSes / e-mails. Any
-                such phone call / SMSes / e-mails asking you to reveal
-                credential or One Time Password through SMS could be attempt to
+              <p>With small business loans up to Rs. 30 lakh, funding for your small business is now just 24 hours away.
+                A business loan is a loan specifically intended for business purposes.
               </p>
             </div>
-            <div data-aos="fade-in" className="feature-box col-lg-4">
+            <div data-aos="zoom-in" className="feature-box col-lg-4">
               <i
                 className="fas fa-building fa-5x"
-                style={{ color: "#00ff7f" }}
+                style={{ color: "#21ba45" }}
               ></i>
               <h5>MORTGAGE</h5>
-              <p>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</p>
-              <p>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</p>
-              <em>lorem gfyhfieufioefrhkjgnvrmgvnkrdvm</em>
+              <p> A mortgage is usually a loan sanctioned against an immovable asset like a house or a commercial property.
+              Buy Your Dream Can We Help You With Lowest Interest Rate Loan In Market</p>
             </div>
           </div>
         </section>
@@ -117,13 +112,13 @@ class HomePage extends React.Component {
                   </i>
                   <h3>Fast service</h3>
                   <p>
-                    Exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                    ex ea{" "}
+                    We offer the fastest loans  – with disbursal in just 48 hours* of your loan getting approved.
+                    Fastservice has no unnecessary or redundant features, but a bit of customization is required to shape the solution to your needs. Use the settings to configure your service management.
                   </p>
                 </div>
               </div>
               <div
-                data-aos="flip-down"
+                data-aos="flip-right"
                 className="col-xl-4 col-lg-4 col-md-4 col-sm-12"
               >
                 <div className="service-box">
@@ -136,8 +131,7 @@ class HomePage extends React.Component {
                   </i>
                   <h3>Payments</h3>
                   <p>
-                    Exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                    ex ea{" "}
+                  The service keeps customer payment information private from the retailer by replacing the customer's credit or debit card Funding Primary Account Number (FPAN) with a tokenized Device Primary Account Number (DPAN), and creates a "dynamic security code [...] ".
                   </p>
                 </div>
               </div>
@@ -154,14 +148,15 @@ class HomePage extends React.Component {
                   </i>
                   <h3>Expert team</h3>
                   <p>
-                    Exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                    ex ea{" "}
+                    This concept is seen within the greater framework of a team, which is a group of interdependent individuals who work together towards a common goal.
+                    A team includes at least 2 or more members, and most teams range in size from 2 to 100. We provide fast and best services.
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     );
   }
