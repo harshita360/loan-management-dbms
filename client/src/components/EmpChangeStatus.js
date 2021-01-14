@@ -448,7 +448,7 @@ class EmpChangeStatus extends React.Component {
             color: "white",
           }}
         >
-          Update Loan
+          More Options
         </Link>
         <br />
         <br />

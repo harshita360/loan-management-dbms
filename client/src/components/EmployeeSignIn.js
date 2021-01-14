@@ -62,7 +62,6 @@ class EmployeeSignIn extends React.Component {
   };
   render() {
     const { error } = this.state;
-    //console.log(this.state.employeId);
     return (
       <div className="ui centered grid">
         <div className="three wide column">

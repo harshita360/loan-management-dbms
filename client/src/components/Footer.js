@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer" style={{ backgroundColor: "black" }}>
       <h2
-        style={{ textAlign: "left", paddingTop: "40px", paddingLeft: "20px" }}
+        style={{ textAlign: "left", paddingTop: "35px", paddingLeft: "20px" }}
       >
         Start a free <br />
         account today
@@ -19,7 +19,6 @@ const Footer = () => {
         <li>LOANS</li>
         <li>PAYMENTS</li>
         <li>SERVICES</li>
-
       </ul>
       <br />
       <br />

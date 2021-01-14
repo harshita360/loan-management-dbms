@@ -15,7 +15,7 @@ class CustomerDashboard extends React.Component {
             WELCOME BACK!
           </h1>
           <br />
-          <br />
+
           <center>
             <Link
               to="/viewloans"
@@ -26,7 +26,7 @@ class CustomerDashboard extends React.Component {
             </Link>
           </center>
           <br />
-          <br />
+
           <br />
           <center>
             <Link

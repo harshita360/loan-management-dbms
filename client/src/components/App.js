@@ -18,6 +18,7 @@ import CustomerDashboard from "./CustomerDashboard";
 import Payments from "./Payments";
 import FormSuccess from "./FormSuccess";
 import EmployeeUpdate from "./EmployeeUpdate";
+import EmpStats from "./EmpStats";
 import loanlogo from "../loanlogo.PNG";
 
 class App extends React.Component {
@@ -84,6 +85,7 @@ class App extends React.Component {
             <Route exact path="/businessform" component={LoanFormbusi} />
             <Route exact path="/mortgageform" component={LoanFormMor} />
             <Route exact path="/update/loan" component={EmployeeUpdate} />
+            <Route exact path="/emp/stats" component={EmpStats} />
             <Route
               exact
               path="/emp/editstatus/:id"
@@ -96,8 +98,6 @@ class App extends React.Component {
         </Router>
         <br />
         <br />
-        <br />
-
         <Footer />
       </div>
     );

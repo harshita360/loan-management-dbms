@@ -399,7 +399,6 @@ class LoanFormEdu extends React.Component {
             </div>
 
             <br />
-            <br />
           </div>
         </div>
       </div>

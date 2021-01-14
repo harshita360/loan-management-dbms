@@ -107,7 +107,7 @@ class CustomerSignIn extends React.Component {
           <br />
 
           <br />
-          <br />
+
           <div className="ui large buttons">
             <button className="ui green button" onClick={this.handleSignIn}>
               Sign In

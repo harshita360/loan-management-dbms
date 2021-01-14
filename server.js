@@ -261,14 +261,15 @@ app.post("/viewform", (req, res) => {
   mysqlConnection.query(q, [id], function (err, result, fields) {
     if (err) {
       console.log(err);
-    } if(result.length) {
+    }
+    if (result.length) {
       console.log("proceeding");
       console.log(result);
       console.log(result[0].loan_id);
       var qe = result[0].loan_id;
       if (qe.charAt(0) === "e") {
         var q1 =
-          "SELECT g.g_name,g.g_relation,c.mname,c.lname,c.mname,c.phone_num,c.state,e.college,e.percentage,ls.form_id,ls.loan_id,ls.req_amt,ls.doclink,lo.loan_name FROM gurantor g,eduloanform e,customer c,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id and ls.cust_id=c.customerId";
+          "SELECT g.g_name,g.g_relation,c.mname,c.fname,c.lname,c.mname,c.phone_num,c.state,e.college,e.percentage,ls.form_id,ls.loan_id,ls.req_amt,ls.doclink,lo.loan_name FROM gurantor g,eduloanform e,customer c,loanform ls,loans lo where ls.form_id= ? and ls.loan_id= ? and g.g_id=ls.g_id and ls.loan_id=lo.loan_id and ls.cust_id=c.customerId";
         mysqlConnection.query(q1, [id, qe], function (err, result1, fields) {
           if (err) {
             console.log(err);
@@ -301,10 +302,10 @@ app.post("/viewform", (req, res) => {
           }
         });
       }
-    }else{
+    } else {
       console.log("Invalid id");
       res.json({
-        lid:"invalid"
+        lid: "invalid",
       });
     }
   });

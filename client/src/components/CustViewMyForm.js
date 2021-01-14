@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class CustViewMyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { formid: 0, form: [], lid: "true", details: {},app:"va" };
+    this.state = { formid: 0, form: [], lid: "true", details: {}, app: "va" };
   }
 
   getform = async () => {
@@ -16,19 +17,19 @@ class CustViewMyForm extends React.Component {
     });
     console.log(response.data.lid);
     //console.log(response.data[0].loan_id);
-    if(response.data.lid==="invalid"){
+    if (response.data.lid === "invalid") {
       this.setState({
-        lid:response.data.lid
+        lid: response.data.lid,
       });
     }
 
-   if(response.data.lid!=="invalid"){
-    this.setState({
-      lid: response.data[0].loan_id,
-      form: [...this.state.form, ...response.data],
-      details: response.data[0],
-    });
-}
+    if (response.data.lid !== "invalid") {
+      this.setState({
+        lid: response.data[0].loan_id,
+        form: [...this.state.form, ...response.data],
+        details: response.data[0],
+      });
+    }
     console.log(this.state.form);
     //  console.log(this.state.lid);
   };
@@ -141,7 +142,7 @@ class CustViewMyForm extends React.Component {
             EDUCATION
           </a>
 
-          <div className="meta" style={{ padding: "35px" }}>
+          <div className="meta" style={{ padding: "35px", color: "black" }}>
             <label className="ui yellow horizontal label">
               <h5 style={{ color: "black" }}>Application Number:&nbsp;</h5>
             </label>
@@ -372,35 +373,102 @@ class CustViewMyForm extends React.Component {
           </div>
         </div>
       );
-    }else if(this.state.lid.charAt(0) === "i"){
-      return <div class="ui negative message">
-              <i class="close icon"></i>
-              <center>
-              <h2>
+    } else if (this.state.lid.charAt(0) === "i") {
+      return (
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <center>
+            <h2>
               OOPS🤦‍
               <br />
               <br />
               Form ID is invalid
-              </h2></center></div>;
-    }
-    else if (this.state.lid.charAt(0) === "b") {
+            </h2>
+          </center>
+        </div>
+      );
+    } else if (this.state.lid.charAt(0) === "b") {
       return (
-        <div>
-          <h2>YOUR APPLICATION</h2>
+        <div className="ui container" style={{ color: "black" }}>
+          <h2
+            style={{ textAlign: "center", color: "#14ff2a", fontSize: "30px" }}
+          >
+            YOUR&nbsp; APPLICATION
+          </h2>
+          <br />
+          <Link to="/customer/dashboard">
+            <button
+              className="ui right floated button"
+              style={{
+                marginLeft: "22px",
+                backgroundColor: "#990000",
+                color: "white",
+                width: "20vw",
+              }}
+            >
+              BACK TO DASHBOARD
+            </button>
+          </Link>
+
+          <br />
+          <br />
+          <br />
           {this.renderbusinessform()}
         </div>
       );
     } else if (this.state.lid.charAt(0) === "e") {
       return (
-        <div>
-          <h2>YOUR APPLICATION</h2>
+        <div className="ui container">
+          <h2
+            style={{ textAlign: "center", color: "#14ff2a", fontSize: "30px" }}
+          >
+            YOUR &nbsp;APPLICATION
+          </h2>
+
+          <Link to="/customer/dashboard">
+            <button
+              className="ui right floated button"
+              style={{
+                marginLeft: "22px",
+                backgroundColor: "#990000",
+                color: "white",
+                width: "20vw",
+              }}
+            >
+              BACK TO DASHBOARD
+            </button>
+          </Link>
+          <br />
+          <br />
+          <br />
           {this.rendereducationform()}
         </div>
       );
     } else {
       return (
-        <div>
-          <h2>YOUR APPLICATION</h2>
+        <div className="ui container">
+          <h2
+            style={{ textAlign: "center", color: "#14ff2a", fontSize: "30px" }}
+          >
+            YOUR &nbsp;APPLICATION
+          </h2>
+          <br />
+          <Link to="/customer/dashboard">
+            <button
+              className="ui right floated button"
+              style={{
+                marginLeft: "22px",
+                backgroundColor: "#990000",
+                color: "white",
+                width: "20vw",
+              }}
+            >
+              BACK TO DASHBOARD
+            </button>
+          </Link>
+          <br />
+          <br />
+          <br />
           {this.rendermortgageform()}
         </div>
       );
