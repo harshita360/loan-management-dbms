@@ -14,6 +14,7 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/busiloanform", { target: "http://localhost:5000" })
   );
+
   app.use(
     createProxyMiddleware("/makepayment", { target: "http://localhost:5000" })
   );
@@ -58,6 +59,16 @@ module.exports = function (app) {
   );
   app.use(
     createProxyMiddleware("/pay/details", {
+      target: "http://localhost:5000",
+    })
+  );
+  app.use(
+    createProxyMiddleware("/emp/stat/state", {
+      target: "http://localhost:5000",
+    })
+  );
+  app.use(
+    createProxyMiddleware("/emp/stat/college", {
       target: "http://localhost:5000",
     })
   );

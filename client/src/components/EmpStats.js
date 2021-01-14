@@ -8,6 +8,9 @@ class EmpStats extends React.Component {
     college: "",
     stateName: "",
     display: "none",
+    res:[],
+    con:0,
+    type:"",
   };
 
   changeDisplay = (category) => {
@@ -25,6 +28,16 @@ class EmpStats extends React.Component {
       stateName: this.state.stateName,
     });
     console.log(response.data);
+    this.setState({
+      res:response.data.result
+    });
+    console.log(this.state.res[0].customerId);
+    this.setState({
+      con:response.data.count,
+      display:"sta"
+    });
+    console.log(this.state.con);
+
   };
 
   renderCollegeDetails = async () => {
@@ -33,7 +46,82 @@ class EmpStats extends React.Component {
       collegeName: this.state.college,
     });
     console.log(response.data);
-  };
+    this.setState({
+      res:response.data.result
+    });
+    console.log(this.state.res[0].customerId);
+    this.setState({
+      con:response.data.count,
+      display:"coll"
+    });
+    console.log(this.state.con);
+    console.log(this.state.type);
+}
+ displayCollegeDetails = () =>{
+   return this.state.res.map((elem) => {
+     console.log(elem);
+     return (
+
+       <table class="ui selectable inverted table">
+ <thead>
+   <tr><th>CUSTOMER ID</th>
+   <th>ACCOUNT NO</th>
+   <th>FIRST NAME</th>
+   <th>MIDDLE NAME</th>
+   <th>LAST NAME</th>
+   <th>PHONE NUMBER</th>
+   <th>STATE</th>
+   <th class="right aligned">COLLEGE</th>
+ </tr></thead><tbody>
+   <tr>
+     <td>{elem.customerId}</td>
+     <td>{elem.CaccountNo}</td>
+     <td>{elem.fname}</td>
+     <td>{elem.mname}</td>
+     <td>{elem.lname}</td>
+     <td>{elem.phone_num}</td>
+     <td>{elem.state}</td>
+     <td class="right aligned">{elem.college}</td>
+   </tr>
+
+ </tbody>
+</table>
+
+);
+});
+ }
+ displayStateDetails = () =>{
+   return this.state.res.map((elem) => {
+     console.log(elem);
+     return (
+
+       <table class="ui selectable inverted table">
+ <thead>
+   <tr><th>CUSTOMER ID</th>
+   <th>ACCOUNT NO</th>
+   <th>FIRST NAME</th>
+   <th>MIDDLE NAME</th>
+   <th>LAST NAME</th>
+   <th>PHONE NUMBER</th>
+   <th class="right aligned">STATE</th>
+ </tr></thead><tbody>
+   <tr>
+     <td>{elem.customerId}</td>
+     <td>{elem.CaccountNo}</td>
+     <td>{elem.fname}</td>
+     <td>{elem.mname}</td>
+     <td>{elem.lname}</td>
+     <td>{elem.phone_num}</td>
+     <td class="right aligned">{elem.state}</td>
+   </tr>
+
+ </tbody>
+</table>
+
+);
+});
+ }
+
 
   render() {
     if (this.state.display === "none") {
@@ -82,7 +170,7 @@ class EmpStats extends React.Component {
           <br />
         </div>
       );
-    } else if (this.state.display === "state") {
+    }if (this.state.display === "state") {
       return (
         <div className="ui container">
           <h4 style={{ color: "#39ff14" }}>Enter the state name</h4>
@@ -111,7 +199,7 @@ class EmpStats extends React.Component {
           <br />
         </div>
       );
-    } else if (this.state.display === "college") {
+    }if (this.state.display === "college") {
       return (
         <div className="ui container">
           <h4 style={{ color: "#39ff14" }}>Enter the college name</h4>
@@ -141,6 +229,22 @@ class EmpStats extends React.Component {
         </div>
       );
     }
+   if(this.state.display==="coll"){
+     return(
+       <div>
+       <p>The count of customers:{this.state.con}</p>
+       {this.displayCollegeDetails()}
+       </div>
+     );
+   }
+   if(this.state.display==="sta"){
+     return(
+       <div>
+       <p>The count of customers:{this.state.con}</p>
+       {this.displayStateDetails()}
+       </div>
+     );
+   }
   }
 }
 
