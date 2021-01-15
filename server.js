@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 var mysqlConnection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "harshita",
+  password: "harshit",
   database: "loanmg",
   multipleStatements: true,
 });
@@ -461,7 +461,7 @@ app.post("/emp/stat/state", (req, res) => {
   console.log(statenm);
   console.log("got from front end");
   var sq1 =
-    "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state from loanmg.customer  where customerId in(select cust_id from loanmg.loanform) and state = ?";
+    "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state from loanmg.customer  where customerId in(select cust_id from loanmg.loanform) and LOWER(state) = ?";
   mysqlConnection.query(sq1, [statenm], function (err, result, fields) {
     if (err) {
       console.log(err);

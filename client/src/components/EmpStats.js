@@ -72,41 +72,16 @@ class EmpStats extends React.Component {
       console.log(elem);
       return (
         <table class="ui selectable inverted table">
-          <thead>
-            <tr key={elem.fname} style={{ color: "#39ff14" }}>
-              <th>
-                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>LAST NAME</label>
-              </th>
 
-              <th>
-                <label style={{ color: "#39ff14" }}>STATE</label>
-              </th>
-              <th class="right aligned">
-                <label style={{ color: "#39ff14" }}>COLLEGE</label>
-              </th>
-            </tr>
-          </thead>
           <tbody>
             <tr key={elem.customerId}>
               <td>{elem.customerId}</td>
               <td>{elem.CaccountNo}</td>
               <td>{elem.fname}</td>
-              <td>{elem.mname}</td>
-              <td>{elem.lname}</td>
+              <td className="right aligned">{elem.mname}</td>
+              <td className="right aligned">{elem.lname}</td>
 
-              <td>{elem.state}</td>
+              <td class="right aligned">{elem.state}</td>
               <td class="right aligned">{elem.college}</td>
             </tr>
           </tbody>
@@ -119,40 +94,15 @@ class EmpStats extends React.Component {
       console.log(elem);
       return (
         <table class="ui selectable inverted table">
-          <thead>
-            <tr key={elem.fname}>
-              <th>
-                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>LAST NAME</label>
-              </th>
-              <th>
-                <label style={{ color: "#39ff14" }}>PHONE NUMBER</label>
-              </th>
-              <th class="right aligned">
-                <label style={{ color: "#39ff14" }}>STATE</label>
-              </th>
-            </tr>
-          </thead>
+
           <tbody>
             <tr key={elem.customerId}>
               <td>{elem.customerId}</td>
               <td>{elem.CaccountNo}</td>
               <td>{elem.fname}</td>
               <td>{elem.mname}</td>
-              <td>{elem.lname}</td>
-              <td>{elem.phone_num}</td>
-              <td class="right aligned">{elem.state}</td>
+              <td className="right aligned">{elem.lname}</td>
+              <td className="right aligned">{elem.state}</td>
             </tr>
           </tbody>
         </table>
@@ -278,6 +228,34 @@ class EmpStats extends React.Component {
           <h2>
             The count of customers &nbsp;: &nbsp; &nbsp; &nbsp;{this.state.con}
           </h2>
+          <table class="ui selectable inverted table">
+            <thead>
+
+                <th>
+                  <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>LAST NAME</label>
+                </th>
+
+                <th>
+                  <label style={{ color: "#39ff14" }}>STATE</label>
+                </th>
+                <th class="right aligned">
+                  <label  style={{ color: "#39ff14" }}>COLLEGE</label>
+                </th>
+
+            </thead>
+            </table>
           <br />
           {this.displayCollegeDetails()}
         </div>
@@ -292,6 +270,31 @@ class EmpStats extends React.Component {
           <br />
           <h2>The count of customers: &nbsp; &nbsp; &nbsp;{this.state.con}</h2>
           <br />
+          <table class="ui selectable inverted table">
+            <thead>
+
+                <th>
+                  <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+                </th>
+                <th>
+                  <label style={{ color: "#39ff14" }}>LAST NAME</label>
+                </th>
+
+                <th className="right aligned">
+                  <label style={{ color: "#39ff14" }}>STATE</label>
+                </th>
+
+            </thead>
+            </table>
           {this.displayStateDetails()}
         </div>
       );
