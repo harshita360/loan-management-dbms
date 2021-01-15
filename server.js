@@ -456,37 +456,35 @@ app.post("/emp/updatestatus", (req, res) => {
     }
   });
 });
-app.post("/emp/stat/state",(req,res)=>{
+app.post("/emp/stat/state", (req, res) => {
   const statenm = req.body.stateName;
   console.log(statenm);
   console.log("got from front end");
-  var sq1=
-      "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state from loanmg.customer  where customerId in(select cust_id from loanmg.loanform) and state = ?";
-mysqlConnection.query(sq1, [ statenm ], function(err, result, fields){
-  if(err){
-    console.log(err);
-  }else{
-    console.log(result);
-    res.json({result:result,
-         count:result.length});
-  }
+  var sq1 =
+    "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state from loanmg.customer  where customerId in(select cust_id from loanmg.loanform) and state = ?";
+  mysqlConnection.query(sq1, [statenm], function (err, result, fields) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json({ result: result, count: result.length });
+    }
+  });
 });
-});
-app.post("/emp/stat/college",(req,res)=>{
+app.post("/emp/stat/college", (req, res) => {
   const collegenm = req.body.collegeName;
   console.log(collegenm);
   console.log("got from front end");
-  var sq1=
-     "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state,college from loanmg.customer c,loanmg.loanform l,loanmg.eduloanform e where c.customerId=l.cust_id and l.form_id=e.form_id and LOWER(college) = ?";
-mysqlConnection.query(sq1, [ collegenm ], function(err, result, fields){
-  if(err){
-    console.log(err);
-  }else{
-    console.log(result);
-    res.json({result:result,
-         count:result.length});
-  }
-});
+  var sq1 =
+    "SELECT customerId,CaccountNo,fname,mname,lname,phone_num,state,college from loanmg.customer c,loanmg.loanform l,loanmg.eduloanform e where c.customerId=l.cust_id and l.form_id=e.form_id and LOWER(college) = ?";
+  mysqlConnection.query(sq1, [collegenm], function (err, result, fields) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json({ result: result, count: result.length });
+    }
+  });
 });
 
 app.get("/emp/geteducationforms", (req, res) => {

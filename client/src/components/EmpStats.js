@@ -8,9 +8,9 @@ class EmpStats extends React.Component {
     college: "",
     stateName: "",
     display: "none",
-    res:[],
-    con:0,
-    type:"",
+    res: [],
+    con: 0,
+    type: "",
   };
 
   changeDisplay = (category) => {
@@ -28,16 +28,19 @@ class EmpStats extends React.Component {
       stateName: this.state.stateName,
     });
     console.log(response.data);
-    this.setState({
-      res:response.data.result
-    });
-    console.log(this.state.res[0].customerId);
-    this.setState({
-      con:response.data.count,
-      display:"sta"
-    });
-    console.log(this.state.con);
-
+    if (response.data.result.length > 0) {
+      this.setState({
+        res: response.data.result,
+      });
+      console.log(this.state.res[0].customerId);
+      this.setState({
+        con: response.data.count,
+        display: "sta",
+      });
+      console.log(this.state.con);
+    } else {
+      alert("No result found :(");
+    }
   };
 
   renderCollegeDetails = async () => {
@@ -46,82 +49,116 @@ class EmpStats extends React.Component {
       collegeName: this.state.college,
     });
     console.log(response.data);
-    this.setState({
-      res:response.data.result
+    if (response.data.result.length > 0) {
+      this.setState({
+        res: response.data.result,
+      });
+
+      console.log(this.state.res[0].customerId);
+      this.setState({
+        con: response.data.count,
+        display: "coll",
+      });
+      console.log(this.state.con);
+      console.log(this.state.type);
+    } else {
+      {
+        alert("No result Found :(");
+      }
+    }
+  };
+  displayCollegeDetails = () => {
+    return this.state.res.map((elem) => {
+      console.log(elem);
+      return (
+        <table class="ui selectable inverted table">
+          <thead>
+            <tr key={elem.fname} style={{ color: "#39ff14" }}>
+              <th>
+                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>LAST NAME</label>
+              </th>
+
+              <th>
+                <label style={{ color: "#39ff14" }}>STATE</label>
+              </th>
+              <th class="right aligned">
+                <label style={{ color: "#39ff14" }}>COLLEGE</label>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key={elem.customerId}>
+              <td>{elem.customerId}</td>
+              <td>{elem.CaccountNo}</td>
+              <td>{elem.fname}</td>
+              <td>{elem.mname}</td>
+              <td>{elem.lname}</td>
+
+              <td>{elem.state}</td>
+              <td class="right aligned">{elem.college}</td>
+            </tr>
+          </tbody>
+        </table>
+      );
     });
-    console.log(this.state.res[0].customerId);
-    this.setState({
-      con:response.data.count,
-      display:"coll"
+  };
+  displayStateDetails = () => {
+    return this.state.res.map((elem) => {
+      console.log(elem);
+      return (
+        <table class="ui selectable inverted table">
+          <thead>
+            <tr key={elem.fname}>
+              <th>
+                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>LAST NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>PHONE NUMBER</label>
+              </th>
+              <th class="right aligned">
+                <label style={{ color: "#39ff14" }}>STATE</label>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key={elem.customerId}>
+              <td>{elem.customerId}</td>
+              <td>{elem.CaccountNo}</td>
+              <td>{elem.fname}</td>
+              <td>{elem.mname}</td>
+              <td>{elem.lname}</td>
+              <td>{elem.phone_num}</td>
+              <td class="right aligned">{elem.state}</td>
+            </tr>
+          </tbody>
+        </table>
+      );
     });
-    console.log(this.state.con);
-    console.log(this.state.type);
-}
- displayCollegeDetails = () =>{
-   return this.state.res.map((elem) => {
-     console.log(elem);
-     return (
-
-       <table class="ui selectable inverted table">
- <thead>
-   <tr><th>CUSTOMER ID</th>
-   <th>ACCOUNT NO</th>
-   <th>FIRST NAME</th>
-   <th>MIDDLE NAME</th>
-   <th>LAST NAME</th>
-   <th>PHONE NUMBER</th>
-   <th>STATE</th>
-   <th class="right aligned">COLLEGE</th>
- </tr></thead><tbody>
-   <tr>
-     <td>{elem.customerId}</td>
-     <td>{elem.CaccountNo}</td>
-     <td>{elem.fname}</td>
-     <td>{elem.mname}</td>
-     <td>{elem.lname}</td>
-     <td>{elem.phone_num}</td>
-     <td>{elem.state}</td>
-     <td class="right aligned">{elem.college}</td>
-   </tr>
-
- </tbody>
-</table>
-
-);
-});
- }
- displayStateDetails = () =>{
-   return this.state.res.map((elem) => {
-     console.log(elem);
-     return (
-
-       <table class="ui selectable inverted table">
- <thead>
-   <tr><th>CUSTOMER ID</th>
-   <th>ACCOUNT NO</th>
-   <th>FIRST NAME</th>
-   <th>MIDDLE NAME</th>
-   <th>LAST NAME</th>
-   <th>PHONE NUMBER</th>
-   <th class="right aligned">STATE</th>
- </tr></thead><tbody>
-   <tr>
-     <td>{elem.customerId}</td>
-     <td>{elem.CaccountNo}</td>
-     <td>{elem.fname}</td>
-     <td>{elem.mname}</td>
-     <td>{elem.lname}</td>
-     <td>{elem.phone_num}</td>
-     <td class="right aligned">{elem.state}</td>
-   </tr>
-
- </tbody>
-</table>
-
-);
-});
- }
-
+  };
 
   render() {
     if (this.state.display === "none") {
@@ -170,7 +207,8 @@ class EmpStats extends React.Component {
           <br />
         </div>
       );
-    }if (this.state.display === "state") {
+    }
+    if (this.state.display === "state") {
       return (
         <div className="ui container">
           <h4 style={{ color: "#39ff14" }}>Enter the state name</h4>
@@ -199,7 +237,8 @@ class EmpStats extends React.Component {
           <br />
         </div>
       );
-    }if (this.state.display === "college") {
+    }
+    if (this.state.display === "college") {
       return (
         <div className="ui container">
           <h4 style={{ color: "#39ff14" }}>Enter the college name</h4>
@@ -229,22 +268,34 @@ class EmpStats extends React.Component {
         </div>
       );
     }
-   if(this.state.display==="coll"){
-     return(
-       <div>
-       <p>The count of customers:{this.state.con}</p>
-       {this.displayCollegeDetails()}
-       </div>
-     );
-   }
-   if(this.state.display==="sta"){
-     return(
-       <div>
-       <p>The count of customers:{this.state.con}</p>
-       {this.displayStateDetails()}
-       </div>
-     );
-   }
+    if (this.state.display === "coll") {
+      return (
+        <div className="ui container">
+          <h1 style={{ textAlign: "center", color: "#39ff14" }}>
+            Service Statistics
+          </h1>
+          <br />
+          <h2>
+            The count of customers &nbsp;: &nbsp; &nbsp; &nbsp;{this.state.con}
+          </h2>
+          <br />
+          {this.displayCollegeDetails()}
+        </div>
+      );
+    }
+    if (this.state.display === "sta") {
+      return (
+        <div className="ui container">
+          <h1 style={{ textAlign: "center", color: "#39ff14" }}>
+            Service Statistics
+          </h1>
+          <br />
+          <h2>The count of customers: &nbsp; &nbsp; &nbsp;{this.state.con}</h2>
+          <br />
+          {this.displayStateDetails()}
+        </div>
+      );
+    }
   }
 }
 
