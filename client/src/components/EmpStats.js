@@ -62,9 +62,7 @@ class EmpStats extends React.Component {
       console.log(this.state.con);
       console.log(this.state.type);
     } else {
-      {
-        alert("No result Found :(");
-      }
+      alert("No result Found :(");
     }
   };
   displayCollegeDetails = () => {
@@ -72,7 +70,6 @@ class EmpStats extends React.Component {
       console.log(elem);
       return (
         <table class="ui selectable inverted table">
-
           <tbody>
             <tr key={elem.customerId}>
               <td>{elem.customerId}</td>
@@ -94,7 +91,6 @@ class EmpStats extends React.Component {
       console.log(elem);
       return (
         <table class="ui selectable inverted table">
-
           <tbody>
             <tr key={elem.customerId}>
               <td>{elem.customerId}</td>
@@ -230,32 +226,30 @@ class EmpStats extends React.Component {
           </h2>
           <table class="ui selectable inverted table">
             <thead>
+              <th>
+                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>LAST NAME</label>
+              </th>
 
-                <th>
-                  <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>FIRST NAME</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>LAST NAME</label>
-                </th>
-
-                <th>
-                  <label style={{ color: "#39ff14" }}>STATE</label>
-                </th>
-                <th class="right aligned">
-                  <label  style={{ color: "#39ff14" }}>COLLEGE</label>
-                </th>
-
+              <th>
+                <label style={{ color: "#39ff14" }}>STATE</label>
+              </th>
+              <th class="right aligned">
+                <label style={{ color: "#39ff14" }}>COLLEGE</label>
+              </th>
             </thead>
-            </table>
+          </table>
           <br />
           {this.displayCollegeDetails()}
         </div>
@@ -272,29 +266,27 @@ class EmpStats extends React.Component {
           <br />
           <table class="ui selectable inverted table">
             <thead>
+              <th>
+                <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>FIRST NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
+              </th>
+              <th>
+                <label style={{ color: "#39ff14" }}>LAST NAME</label>
+              </th>
 
-                <th>
-                  <label style={{ color: "#39ff14" }}>CUSTOMER ID</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>ACCOUNT NO</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>FIRST NAME</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>MIDDLE NAME</label>
-                </th>
-                <th>
-                  <label style={{ color: "#39ff14" }}>LAST NAME</label>
-                </th>
-
-                <th className="right aligned">
-                  <label style={{ color: "#39ff14" }}>STATE</label>
-                </th>
-
+              <th className="right aligned">
+                <label style={{ color: "#39ff14" }}>STATE</label>
+              </th>
             </thead>
-            </table>
+          </table>
           {this.displayStateDetails()}
         </div>
       );

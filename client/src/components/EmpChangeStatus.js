@@ -448,7 +448,18 @@ class EmpChangeStatus extends React.Component {
             color: "white",
           }}
         >
-          More Options
+          UPDATE LOANS
+        </Link>
+        <Link
+          to="/emp/stats"
+          className="ui big left floated button"
+          style={{
+            marginLeft: "15px",
+            backgroundColor: "#990000",
+            color: "white",
+          }}
+        >
+          SEE STATISTICS
         </Link>
         <br />
         <br />
